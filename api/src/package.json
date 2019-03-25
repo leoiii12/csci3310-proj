@@ -1,0 +1,12 @@
+{
+  "name": "event331-api",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "devDependencies": {},
+  "dependencies": {
+    "app-root-path": "^2.1.0",
+    "glob": "^7.1.3"
+  }
+}

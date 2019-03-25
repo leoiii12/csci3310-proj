@@ -1,0 +1,91 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "runFunctionsHost",
+      "type": "shell",
+      "command": "func host start",
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "clear": true,
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$func-watch",
+      "options": {
+        "env": {
+          "languageWorkers:node:arguments": "--inspect=5858",
+          "NODE_ENV": "Development"
+        },
+        "cwd": "./dist"
+      },
+      "dependsOn": [
+        "restoreExtensionsDev"
+      ]
+    },
+    {
+      "label": "restoreExtensionsDev",
+      "command": "dotnet restore",
+      "type": "shell",
+      "options": {
+        "cwd": "./dist"
+      },
+      "dependsOn": [
+        "runFunExtensionInstallDev"
+      ]
+    },
+    {
+      "label": "runFunExtensionInstallDev",
+      "command": "func extensions install",
+      "type": "shell",
+      "options": {
+        "cwd": "./dist"
+      },
+      "dependsOn": [
+        "buildDev"
+      ]
+    },
+    {
+      "label": "buildDev",
+      "command": "npm run build:dev",
+      "type": "shell"
+    },
+    // Production
+    {
+      "label": "restoreExtensionsProd",
+      "command": "dotnet restore",
+      "type": "shell",
+      "presentation": {
+        "reveal": "silent"
+      },
+      "options": {
+        "cwd": "./dist"
+      },
+      "dependsOn": [
+        "runFunExtensionInstallProd"
+      ]
+    },
+    {
+      "label": "runFunExtensionInstallProd",
+      "command": "func extensions install",
+      "type": "shell",
+      "presentation": {
+        "reveal": "silent"
+      },
+      "options": {
+        "cwd": "./dist"
+      },
+      "dependsOn": [
+        "buildProd"
+      ]
+    },
+    {
+      "label": "buildProd",
+      "command": "npm run build:prod",
+      "type": "shell",
+      "presentation": {
+        "reveal": "always"
+      }
+    }
+  ]
+}

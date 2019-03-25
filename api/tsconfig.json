@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "strict": true,
+    "noImplicitThis": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+    "lib": [
+      "es2017"
+    ],
+    "baseUrl": "src",
+    "paths": {
+      "@event/entity": [
+        "entity/index"
+      ],
+      "@event/migration": [
+        "migration/index"
+      ],
+      "@event/util": [
+        "util/index"
+      ],
+      "@event/func": [
+        "func/index"
+      ]
+    },
+    "skipLibCheck": true,
+  }
+}

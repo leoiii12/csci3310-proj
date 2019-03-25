@@ -1,0 +1,72 @@
+[
+  {
+    "name": "default",
+    "type": "mssql",
+    "host": "event331-database-server.database.windows.net",
+    "username": "event331",
+    "password": "cfpXJ!8U@yS7tzqc",
+    "database": "event331",
+    "logging": true,
+    "options": {
+      "encrypt": true
+    },
+    "entities": [
+      "src/entity/**/*.ts"
+    ],
+    "migrations": [
+      "src/migration/**/*.ts"
+    ],
+    "subscribers": [
+      "src/subscriber/**/*.ts"
+    ],
+    "cli": {
+      "entitiesDir": "src/entity",
+      "migrationsDir": "src/migration",
+      "subscribersDir": "src/subscriber"
+    }
+  },
+  {
+    "name": "default-dist",
+    "type": "mssql",
+    "host": "event331-database-server.database.windows.net",
+    "username": "event331",
+    "password": "cfpXJ!8U@yS7tzqc",
+    "database": "event331",
+    "logging": false,
+    "options": {
+      "encrypt": true
+    }
+  },
+  {
+    "name": "dev",
+    "type": "mssql",
+    "host": "localhost",
+    "username": "sa",
+    "password": "yourStrong(!)Password",
+    "database": "event331",
+    "logging": true,
+    "options": {
+      "encrypt": true
+    },
+    "entities": [
+      "src/entity/**/*.ts"
+    ],
+    "migrations": [
+      "src/migration/**/*.ts"
+    ],
+    "subscribers": [
+      "src/subscriber/**/*.ts"
+    ],
+    "cli": {
+      "entitiesDir": "src/entity",
+      "migrationsDir": "src/migration",
+      "subscribersDir": "src/subscriber"
+    }
+  },
+  {
+    "name": "default-test",
+    "type": "sqlite",
+    "database": ":memory:",
+    "logging": false
+  }
+]

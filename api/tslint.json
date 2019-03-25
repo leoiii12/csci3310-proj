@@ -1,0 +1,15 @@
+{
+  "extends": "tslint-config-airbnb",
+  "linterOptions": {
+    "exclude": [
+      "src/migration/*.ts",
+      "node_modules/**"
+    ]
+  },
+  "rules": {
+    "max-line-length": [
+      true,
+      200
+    ]
+  }
+}

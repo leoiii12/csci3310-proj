@@ -1,4 +1,4 @@
-package com.example.a3310_proj_01;
+package com.cuhk.travelligent;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

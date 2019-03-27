@@ -1,4 +1,4 @@
-package com.example.a3310_proj_01;
+package com.cuhk.travelligent;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.a3310_proj_01", appContext.getPackageName());
+        assertEquals("com.cuhk.travelligent", appContext.getPackageName());
     }
 }

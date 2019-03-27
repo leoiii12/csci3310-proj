@@ -1,4 +1,4 @@
-package com.example.a3310_proj_01;
+package com.cuhk.travelligent;
 
 import org.junit.Test;
 

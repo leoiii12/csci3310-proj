@@ -20,11 +20,11 @@ package io.swagger.client.models
  */
 data class ListUsersInput (
     /* @IsDefined() @IsInt() @IsDivisibleBy(20) */
-    val skip: java.math.BigDecimal? = null,
+    val skip: kotlin.Int? = null,
     /* @IsOptional() @IsString() @Length(2) */
     val name: kotlin.String? = null,
     /* @IsOptional() @IsInt() */
-    val sex: java.math.BigDecimal? = null
+    val sex: kotlin.Int? = null
 ) {
 
 }

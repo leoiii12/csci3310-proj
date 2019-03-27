@@ -87,6 +87,14 @@ for (const { filePath, inputClassName, outputClassName } of functionEntries) {
     };
   }
 
+  path.post.parameters.push({
+    in: 'header',
+    name: 'X-Authorization',
+    type: 'string',
+    required: false,
+    default: ''
+  })
+
   swaggerFile.paths[route] = path;
 }
 

@@ -25,16 +25,17 @@ class UserApi(basePath: kotlin.String = "https://event331-api.azurewebsites.net"
     * 
     * 
     * @param input  
+    * @param xAuthorization  (optional, default to )
     * @return ChangeMyPasswordOutput
     */
     @Suppress("UNCHECKED_CAST")
-    fun apiUserChangeMyPassword(input: ChangeMyPasswordInput) : ChangeMyPasswordOutput {
+    fun apiUserChangeMyPassword(input: ChangeMyPasswordInput, xAuthorization: kotlin.String) : ChangeMyPasswordOutput {
         val localVariableBody: kotlin.Any? = input
         val localVariableQuery: MultiValueMap = mapOf()
         
         val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")
-        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf()
+        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf("X-Authorization" to xAuthorization)
         localVariableHeaders.putAll(contentHeaders)
         localVariableHeaders.putAll(acceptsHeaders)
         
@@ -62,16 +63,17 @@ class UserApi(basePath: kotlin.String = "https://event331-api.azurewebsites.net"
     /**
     * 
     * 
+    * @param xAuthorization  (optional, default to )
     * @return GetMyUserOutput
     */
     @Suppress("UNCHECKED_CAST")
-    fun apiUserGetMyUser() : GetMyUserOutput {
+    fun apiUserGetMyUser(xAuthorization: kotlin.String) : GetMyUserOutput {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mapOf()
         
         val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")
-        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf()
+        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf("X-Authorization" to xAuthorization)
         localVariableHeaders.putAll(contentHeaders)
         localVariableHeaders.putAll(acceptsHeaders)
         
@@ -100,16 +102,17 @@ class UserApi(basePath: kotlin.String = "https://event331-api.azurewebsites.net"
     * 
     * 
     * @param input  
+    * @param xAuthorization  (optional, default to )
     * @return ListUsersOutput
     */
     @Suppress("UNCHECKED_CAST")
-    fun apiUserList(input: ListUsersInput) : ListUsersOutput {
+    fun apiUserList(input: ListUsersInput, xAuthorization: kotlin.String) : ListUsersOutput {
         val localVariableBody: kotlin.Any? = input
         val localVariableQuery: MultiValueMap = mapOf()
         
         val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/json")
-        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf()
+        val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf("X-Authorization" to xAuthorization)
         localVariableHeaders.putAll(contentHeaders)
         localVariableHeaders.putAll(acceptsHeaders)
         

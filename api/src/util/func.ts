@@ -86,10 +86,16 @@ export namespace Func {
     try {
       const req = context.req;
 
+      if (authorized === undefined) {
+        return await func({});
+      }
+
       const verifyResult = await verifyAccessToken(req, authorized);
 
       return await func(verifyResult);
     } catch (ex) {
+      context.log.error(ex);
+
       if (ex instanceof UnauthorizedError || ex instanceof JsonWebTokenError) {
         return Output.unauthorized();
       }
@@ -105,8 +111,6 @@ export namespace Func {
       if (ex instanceof UserFriendlyError) {
         return Output.error(ex.message);
       }
-
-      context.log.error(ex);
 
       return Output.internalError();
     }

@@ -19,7 +19,7 @@ package io.swagger.client.models
  * @param message 
  * @param dateTime 
  */
-data class Output<out T> (
+data class Output<T> (
     val success: kotlin.Boolean? = null,
     val `data`: T? = null,
     val message: kotlin.String? = null,

@@ -27,9 +27,11 @@ export interface SwaggerAction {
     name: string;
     in: string;
     required: boolean;
-    schema: {
+    schema?: {
       $ref: string;
-    }
+    };
+    type?: string;
+    default?: string;
   }[];
   responses: {
     '200': {

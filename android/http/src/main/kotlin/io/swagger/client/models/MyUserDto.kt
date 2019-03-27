@@ -22,7 +22,7 @@ package io.swagger.client.models
  * @param roles 
  */
 data class MyUserDto (
-    val id: java.math.BigDecimal? = null,
+    val id: kotlin.Int? = null,
     val emailAddress: kotlin.String? = null,
     val firstName: kotlin.String? = null,
     val lastName: kotlin.String? = null,

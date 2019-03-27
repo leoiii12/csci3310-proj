@@ -20,7 +20,7 @@ package io.swagger.client.models
  * @param sex 
  */
 data class UserDto (
-    val id: java.math.BigDecimal? = null,
+    val id: kotlin.Int? = null,
     val firstName: kotlin.String? = null,
     val lastName: kotlin.String? = null,
     val sex: kotlin.Int? = null

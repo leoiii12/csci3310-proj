@@ -49,6 +49,8 @@ export function normalizeToSwaggerType(inType: string): string {
     .replace(/\ /, '');
 
   switch (type) {
+    case 'number':
+      return 'integer';
     case 'int':
       return 'integer';
     case 'any':

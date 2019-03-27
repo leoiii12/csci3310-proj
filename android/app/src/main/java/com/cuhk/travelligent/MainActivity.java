@@ -4,8 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import io.swagger.client.apis.AuthApi;
+import io.swagger.client.apis.UserApi;
 import io.swagger.client.models.AuthenticateInput;
 import io.swagger.client.models.AuthenticateOutput;
+import io.swagger.client.models.GetMyUserOutput;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,16 +20,17 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-                AuthApi apiInstance = new AuthApi();
-                AuthenticateInput input = new AuthenticateInput("choimankin@gmail.com", "12345678");
+                AuthApi authApi = new AuthApi();
+                AuthenticateInput authenticateInput = new AuthenticateInput("choimankin@gmail.com", "12345678");
+                AuthenticateOutput authenticateOutput = authApi.apiAuthAuthenticate(authenticateInput, "");
 
-                try {
-                    AuthenticateOutput result = apiInstance.apiAuthAuthenticate(input);
-                    System.out.println(result.getAccessToken());
-                } catch (Exception e) {
-                    System.err.println("Exception when calling AuthApi#apiAuthAuthenticate");
-                    e.printStackTrace();
-                }
+                // This token should be preserved
+                System.out.println(authenticateOutput.getAccessToken());
+
+                UserApi userApi = new UserApi();
+                GetMyUserOutput getMyUserOutput = userApi.apiUserGetMyUser("Bearer " + authenticateOutput.getAccessToken());
+
+                System.out.println(getMyUserOutput);
             }
         });
 

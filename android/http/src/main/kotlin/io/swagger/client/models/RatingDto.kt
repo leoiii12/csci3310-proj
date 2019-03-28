@@ -19,7 +19,7 @@ package io.swagger.client.models
  */
 data class RatingDto (
     val id: kotlin.Int? = null,
-    val value: kotlin.Int? = null
+    val value: kotlin.Double ? = null
 ) {
 
 }

@@ -8,10 +8,10 @@ export class Rating {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column('float')
   value: number;
 
-  @ManyToOne(type => User, u => u.comments)
+  @ManyToOne(type => User, u => u.ratings)
   createUser: User;
 
   @Column()

@@ -4,12 +4,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import io.swagger.client.apis.AuthApi;
+import io.swagger.client.apis.CommentApi;
+import io.swagger.client.apis.RatingApi;
 import io.swagger.client.apis.SightApi;
 import io.swagger.client.apis.UserApi;
 import io.swagger.client.models.AuthenticateInput;
 import io.swagger.client.models.AuthenticateOutput;
 import io.swagger.client.models.CheckAccountInput;
 import io.swagger.client.models.CheckAccountOutput;
+import io.swagger.client.models.CreateCommentInput;
+import io.swagger.client.models.CreateCommentOutput;
+import io.swagger.client.models.CreateRatingInput;
+import io.swagger.client.models.CreateRatingOutput;
 import io.swagger.client.models.CreateSightInput;
 import io.swagger.client.models.CreateSightOutput;
 import io.swagger.client.models.GetMyUserOutput;
@@ -60,6 +66,23 @@ public class MainActivity extends AppCompatActivity {
 
                     GetSightInput getSightInput = new GetSightInput(1);
                     GetSightOutput getSightOutput = sightApi.apiSightGet(getSightInput, "Bearer " + authenticateOutput.getAccessToken());
+
+                    System.out.println(getSightOutput);
+
+                    CommentApi commentApi = new CommentApi();
+                    CreateCommentInput createCommentInput = new CreateCommentInput("Hello World", null, 1, null);
+                    CreateCommentOutput createCommentOutput = commentApi.apiCommentCreate(createCommentInput, "Bearer " + authenticateOutput.getAccessToken());
+
+                    System.out.println(createCommentOutput);
+
+                    RatingApi ratingApi = new RatingApi();
+                    CreateRatingInput createRatingInput = new CreateRatingInput(4.9, null, 1, null);
+                    CreateRatingOutput createRatingOutput = ratingApi.apiRatingCreate(createRatingInput, "Bearer " + authenticateOutput.getAccessToken());
+
+                    System.out.println(createRatingOutput);
+
+                    getSightInput = new GetSightInput(1);
+                    getSightOutput = sightApi.apiSightGet(getSightInput, "Bearer " + authenticateOutput.getAccessToken());
 
                     System.out.println(getSightOutput);
                 } catch (Exception e) {

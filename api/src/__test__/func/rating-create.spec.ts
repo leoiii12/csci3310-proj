@@ -40,7 +40,7 @@ describe('rating-create', () => {
 
     // Init
     let input = new CreateRatingInput();
-    input.value = 1;
+    input.value = 1.1;
     input.sightId = sight.id;
 
     let output = await createRating(input, user.id, user.roles);
@@ -56,7 +56,7 @@ describe('rating-create', () => {
 
     // Update
     input = new CreateRatingInput();
-    input.value = 3;
+    input.value = 3.2;
     input.sightId = sight.id;
 
     output = await createRating(input, user.id, user.roles);

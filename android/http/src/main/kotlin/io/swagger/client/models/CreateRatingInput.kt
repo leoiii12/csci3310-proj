@@ -21,7 +21,7 @@ package io.swagger.client.models
  */
 data class CreateRatingInput (
     /* @IsDefined() @IsNumber() @Max(5) @Min(1) */
-    val value: kotlin.Int? = null,
+    val value: kotlin.Double? = null,
     /* @IsOptional() @IsInt() */
     val flightId: kotlin.Int? = null,
     /* @IsOptional() @IsInt() */

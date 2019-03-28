@@ -41,9 +41,9 @@ export async function createRating(input: CreateRatingInput, userId?: number, ro
   let rating = await ratingRepository.findOne({
     where: {
       createUserId: userId,
-      flightId: input.flightId,
-      sightId: input.sightId,
-      transportId: input.transportId,
+      flightId: input.flightId === undefined ? null : input.flightId,
+      sightId: input.sightId === undefined ? null : input.sightId,
+      transportId: input.transportId === undefined ? null : input.transportId,
     },
   });
 

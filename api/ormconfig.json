@@ -49,7 +49,7 @@
       "encrypt": true
     },
     "entities": [
-      "src/entity/**/*.ts"
+      "src/entity/index.ts"
     ],
     "migrations": [
       "src/migration/**/*.ts"

@@ -1,6 +1,9 @@
 import {
-    AfterLoad, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn,
+    AfterLoad, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn,
+    UpdateDateColumn,
 } from 'typeorm';
+
+import { Comment, Flight, Rating, Sight, Transport } from './';
 
 export enum Role {
   Users = 1000,
@@ -35,6 +38,21 @@ export class User {
 
   @Column('simple-array')
   roles: Role[] = [];
+
+  @OneToMany(type => Comment, c => c.createUser)
+  comments: Comment[];
+
+  @OneToMany(type => Rating, r => r.createUser)
+  ratings: Rating[];
+
+  @OneToMany(type => Flight, f => f.createUser)
+  flights: Flight[];
+
+  @OneToMany(type => Sight, s => s.createUser)
+  sights: Sight[];
+
+  @OneToMany(type => Transport, t => t.createUser)
+  transports: Transport[];
 
   @CreateDateColumn()
   enrolmentDate: Date;

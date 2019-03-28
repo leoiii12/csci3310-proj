@@ -2,9 +2,17 @@ export * from './auth-authenticate';
 export * from './auth-check-account';
 export * from './auth-sign-up';
 
+export * from './comment-create';
+
 export * from './hello-world';
 
 export * from './init';
+
+export * from './rating-create';
+
+export * from './sight-create';
+export * from './sight-get';
+export * from './sight-list';
 
 export * from './swagger-doc';
 

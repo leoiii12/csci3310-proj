@@ -1,6 +1,6 @@
 import { hash } from 'bcryptjs';
 
-import { Role, Sex, User } from '@event/entity';
+import { Role, Sex, Sight, User } from '@event/entity';
 import { DB } from '@event/util';
 
 // DON'T REMOVE ANY STRUCTURE HERE
@@ -25,6 +25,18 @@ export const users = {
   },
 };
 
+export const sights = {
+  sight_1: {
+    id: 1,
+    title: '君子塔',
+    latLng: {
+      latitude: 22.4207731,
+      longitude: 114.2075137,
+    },
+    createUserId: users.user_1.id,
+  },
+};
+
 export const init = async () => {
   const connection = await DB.getConnection();
   await connection.synchronize();
@@ -45,5 +57,20 @@ export const createMockAccounts = async () => {
     u.lastName = user.lastName;
 
     await userRepository.insert(u);
+  }
+};
+
+export const createMockSights = async () => {
+  const connection = await DB.getConnection();
+  const sightRepository = connection.getRepository(Sight);
+
+  for (const sight of Object.values(sights)) {
+    const s = new Sight();
+    s.id = sight.id;
+    s.title = sight.title;
+    s.latLng = sight.latLng;
+    s.createUserId = sight.createUserId;
+
+    await sightRepository.insert(s);
   }
 };

@@ -1,0 +1,878 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.0.1",
+    "title": "event331-api"
+  },
+  "host": "event331-api.azurewebsites.net",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/api/Auth/Authenticate": {
+      "post": {
+        "operationId": "api_Auth_Authenticate",
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AuthenticateInput"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Authorization",
+            "type": "string",
+            "required": false,
+            "default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/AuthenticateOutput"
+            }
+          }
+        }
+      }
+    },
+    "/api/Auth/CheckAccount": {
+      "post": {
+        "operationId": "api_Auth_CheckAccount",
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CheckAccountInput"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Authorization",
+            "type": "string",
+            "required": false,
+            "default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/CheckAccountOutput"
+            }
+          }
+        }
+      }
+    },
+    "/api/Auth/SignUp": {
+      "post": {
+        "operationId": "api_Auth_SignUp",
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SignUpInput"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Authorization",
+            "type": "string",
+            "required": false,
+            "default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Comment/Create": {
+      "post": {
+        "operationId": "api_Comment_Create",
+        "tags": [
+          "Comment"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateCommentInput"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Authorization",
+            "type": "string",
+            "required": false,
+            "default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/CreateCommentOutput"
+            }
+          }
+        }
+      }
+    },
+    "/api/HelloWorld": {
+      "post": {
+        "operationId": "api_HelloWorld",
+        "tags": [
+          "HelloWorld"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Authorization",
+            "type": "string",
+            "required": false,
+            "default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Init": {
+      "post": {
+        "operationId": "api_Init",
+        "tags": [
+          "Init"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/InitInput"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Authorization",
+            "type": "string",
+            "required": false,
+            "default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Rating/Create": {
+      "post": {
+        "operationId": "api_Rating_Create",
+        "tags": [
+          "Rating"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateRatingInput"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Authorization",
+            "type": "string",
+            "required": false,
+            "default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/CreateRatingOutput"
+            }
+          }
+        }
+      }
+    },
+    "/api/Sight/Create": {
+      "post": {
+        "operationId": "api_Sight_Create",
+        "tags": [
+          "Sight"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateSightInput"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Authorization",
+            "type": "string",
+            "required": false,
+            "default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/CreateSightOutput"
+            }
+          }
+        }
+      }
+    },
+    "/api/Sight/Get": {
+      "post": {
+        "operationId": "api_Sight_Get",
+        "tags": [
+          "Sight"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetSightInput"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Authorization",
+            "type": "string",
+            "required": false,
+            "default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/GetSightOutput"
+            }
+          }
+        }
+      }
+    },
+    "/api/Sight/List": {
+      "post": {
+        "operationId": "api_Sight_List",
+        "tags": [
+          "Sight"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Authorization",
+            "type": "string",
+            "required": false,
+            "default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ListSightsOutput"
+            }
+          }
+        }
+      }
+    },
+    "/api/SwaggerDoc": {
+      "post": {
+        "operationId": "api_SwaggerDoc",
+        "tags": [
+          "SwaggerDoc"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Authorization",
+            "type": "string",
+            "required": false,
+            "default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/User/ChangeMyPassword": {
+      "post": {
+        "operationId": "api_User_ChangeMyPassword",
+        "tags": [
+          "User"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChangeMyPasswordInput"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Authorization",
+            "type": "string",
+            "required": false,
+            "default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ChangeMyPasswordOutput"
+            }
+          }
+        }
+      }
+    },
+    "/api/User/GetMyUser": {
+      "post": {
+        "operationId": "api_User_GetMyUser",
+        "tags": [
+          "User"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Authorization",
+            "type": "string",
+            "required": false,
+            "default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/GetMyUserOutput"
+            }
+          }
+        }
+      }
+    },
+    "/api/User/List": {
+      "post": {
+        "operationId": "api_User_List",
+        "tags": [
+          "User"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ListUsersInput"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Authorization",
+            "type": "string",
+            "required": false,
+            "default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ListUsersOutput"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AuthenticateInput": {
+      "type": "object",
+      "properties": {
+        "idOrEmailAddress": {
+          "type": "string",
+          "description": "@IsDefined() @Length(5)"
+        },
+        "password": {
+          "type": "string",
+          "description": "@IsDefined() @Length(6)"
+        }
+      }
+    },
+    "CheckAccountInput": {
+      "type": "object",
+      "properties": {
+        "emailAddress": {
+          "type": "string",
+          "description": "@IsEmail()"
+        }
+      }
+    },
+    "SignUpInput": {
+      "type": "object",
+      "properties": {
+        "emailAddress": {
+          "type": "string",
+          "description": "@IsDefined() @IsEmail()"
+        },
+        "password": {
+          "type": "string",
+          "description": "@IsDefined() @Length(6)"
+        },
+        "firstName": {
+          "type": "string",
+          "description": "@IsOptional() @IsString()"
+        },
+        "lastName": {
+          "type": "string",
+          "description": "@IsOptional() @IsString()"
+        },
+        "sex": {
+          "type": "integer",
+          "description": "@IsOptional() @IsInt()"
+        }
+      }
+    },
+    "CreateCommentInput": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "@IsDefined() @IsString() @Length(2)"
+        },
+        "flightId": {
+          "type": "integer",
+          "description": "@IsOptional() @IsInt()"
+        },
+        "sightId": {
+          "type": "integer",
+          "description": "@IsOptional() @IsInt()"
+        },
+        "transportId": {
+          "type": "integer",
+          "description": "@IsOptional() @IsInt()"
+        }
+      }
+    },
+    "InitInput": {
+      "type": "object",
+      "properties": {
+        "emailAddress": {
+          "type": "string",
+          "description": "@IsDefined() @IsEmail()"
+        },
+        "password": {
+          "type": "string",
+          "description": "@IsDefined()"
+        }
+      }
+    },
+    "CreateRatingInput": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "integer",
+          "description": "@IsDefined() @IsNumber() @Max(5) @Min(1)"
+        },
+        "flightId": {
+          "type": "integer",
+          "description": "@IsOptional() @IsInt()"
+        },
+        "sightId": {
+          "type": "integer",
+          "description": "@IsOptional() @IsInt()"
+        },
+        "transportId": {
+          "type": "integer",
+          "description": "@IsOptional() @IsInt()"
+        }
+      }
+    },
+    "CreateSightInput": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "@IsDefined() @IsString() @Length(2)"
+        },
+        "lat": {
+          "type": "integer",
+          "description": "@IsOptional() @IsNumber()"
+        },
+        "lng": {
+          "type": "integer",
+          "description": "@IsOptional() @IsNumber()"
+        }
+      }
+    },
+    "GetSightInput": {
+      "type": "object",
+      "properties": {
+        "sightId": {
+          "type": "integer",
+          "description": "@IsDefined() @IsInt()"
+        }
+      }
+    },
+    "ChangeMyPasswordInput": {
+      "type": "object",
+      "properties": {
+        "oldPassword": {
+          "type": "string",
+          "description": "@IsDefined() @Length(6)"
+        },
+        "password": {
+          "type": "string",
+          "description": "@IsDefined() @Length(6)"
+        }
+      }
+    },
+    "ListUsersInput": {
+      "type": "object",
+      "properties": {
+        "skip": {
+          "type": "integer",
+          "description": "@IsDefined() @IsInt() @IsDivisibleBy(20)"
+        },
+        "name": {
+          "type": "string",
+          "description": "@IsOptional() @IsString() @Length(2)"
+        },
+        "sex": {
+          "type": "integer",
+          "description": "@IsOptional() @IsInt()"
+        }
+      }
+    },
+    "Output": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "data": {
+          "type": "NonNullable<T>"
+        },
+        "message": {
+          "type": "string"
+        },
+        "dateTime": {
+          "type": "string"
+        }
+      }
+    },
+    "AuthenticateOutput": {
+      "type": "object",
+      "properties": {
+        "accessToken": {
+          "type": "string"
+        }
+      }
+    },
+    "CheckAccountOutput": {
+      "type": "object",
+      "properties": {
+        "accountStatus": {
+          "type": "integer"
+        }
+      }
+    },
+    "CreateCommentOutput": {
+      "type": "object",
+      "properties": {
+        "commentId": {
+          "type": "integer"
+        }
+      }
+    },
+    "CreateRatingOutput": {
+      "type": "object",
+      "properties": {
+        "ratingId": {
+          "type": "integer"
+        }
+      }
+    },
+    "CreateSightOutput": {
+      "type": "object",
+      "properties": {
+        "sightId": {
+          "type": "integer"
+        }
+      }
+    },
+    "CommentDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "content": {
+          "type": "string"
+        }
+      }
+    },
+    "RatingDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "integer"
+        }
+      }
+    },
+    "SightDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CommentDto"
+          }
+        },
+        "ratings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RatingDto"
+          }
+        }
+      }
+    },
+    "GetSightOutput": {
+      "type": "object",
+      "properties": {
+        "sight": {
+          "$ref": "#/definitions/SightDto"
+        }
+      }
+    },
+    "SightListDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "ListSightsOutput": {
+      "type": "object",
+      "properties": {
+        "sights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SightListDto"
+          }
+        }
+      }
+    },
+    "ChangeMyPasswordOutput": {
+      "type": "object",
+      "properties": {
+        "accessToken": {
+          "type": "string"
+        }
+      }
+    },
+    "MyUserDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "sex": {
+          "type": "integer"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "GetMyUserOutput": {
+      "type": "object",
+      "properties": {
+        "myUser": {
+          "$ref": "#/definitions/MyUserDto"
+        }
+      }
+    },
+    "UserDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "sex": {
+          "type": "integer"
+        }
+      }
+    },
+    "ListUsersOutput": {
+      "type": "object",
+      "properties": {
+        "users": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserDto"
+          }
+        }
+      }
+    }
+  }
+}

@@ -57,7 +57,7 @@ export async function listUsers(input: ListUsersInput, userId?: number, roles?: 
     .take(20)
     .getMany();
 
-  return new ListUsersOutput(users.map(g => UserDto.from(g)));
+  return new ListUsersOutput(users.map(u => UserDto.from(u)));
 }
 
 export async function userListFunc(context: any) {

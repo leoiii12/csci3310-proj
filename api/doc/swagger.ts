@@ -54,6 +54,7 @@ export interface SwaggerDefinitionProperties {
   [key: string]: {
     // type => array, boolean, integer, null, number, object, string
     type?: string;
+    format?: string;
 
     // type => definition
     $ref?: string;
@@ -61,6 +62,7 @@ export interface SwaggerDefinitionProperties {
     // type => array
     items?: {
       type?: string;
+      format?: string;
       $ref?: string;
     }
 

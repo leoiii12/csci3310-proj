@@ -92,8 +92,8 @@ for (const { filePath, inputClassName, outputClassName } of functionEntries) {
     name: 'X-Authorization',
     type: 'string',
     required: false,
-    default: ''
-  })
+    default: '',
+  });
 
   swaggerFile.paths[route] = path;
 }
@@ -139,6 +139,15 @@ for (const dtoEntry of dtoEntries) {
       {
         type: normalizeToSwaggerType(type),
       };
+
+    if (member.type === 'number') {
+      definition.properties[member.name].type = 'integer';
+      definition.properties[member.name].format = undefined;
+    }
+    if (member.decorators.includes('@IsNumber()') || member.decorators.includes('@IsDouble')) {
+      definition.properties[member.name].type = 'number';
+      definition.properties[member.name].format = 'double';
+    }
 
     if (member.decorators.length > 0) {
       definition.properties[member.name].description = member.decorators.join(' ');

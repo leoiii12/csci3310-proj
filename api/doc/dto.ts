@@ -49,7 +49,7 @@ function typeToMemberEntry(node: PropertyDeclaration | ParameterDeclaration) {
     if (symbol !== undefined && symbol.getDeclarations().some(d => d.getKind() === SyntaxKind.EnumDeclaration)) {
       return {
         name: node.getName(),
-        type: 'int[]',
+        type: 'integer[]',
         decorators: node.getDecorators().map((d: any) => d.getText()).map(d => d.replace(/(?:\r\n|\r|\n)/gm, '')),
       } as MemberEntry;
     }
@@ -72,7 +72,7 @@ function typeToMemberEntry(node: PropertyDeclaration | ParameterDeclaration) {
   if (symbol !== undefined && symbol.getDeclarations().some(d => d.getKind() === SyntaxKind.EnumDeclaration)) {
     return {
       name: node.getName(),
-      type: 'int',
+      type: 'integer',
       decorators: node.getDecorators().map((d: any) => d.getText()).map(d => d.replace(/(?:\r\n|\r|\n)/gm, '')),
     } as MemberEntry;
   }

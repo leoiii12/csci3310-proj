@@ -15,11 +15,12 @@ package io.swagger.client.models
 /**
  * 
  * @param id 
- * @param value 
+ * @param value @IsDouble
  */
 data class RatingDto (
     val id: kotlin.Int? = null,
-    val value: kotlin.Double ? = null
+    /* @IsDouble */
+    val value: kotlin.Double? = null
 ) {
 
 }

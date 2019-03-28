@@ -1,5 +1,7 @@
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
+import { IsDouble } from '@event/util';
+
 import { Flight, Sight, Transport, User } from './';
 
 @Entity('rating')
@@ -44,7 +46,7 @@ export class RatingDto {
 
   constructor(
     public id: number,
-    public value: number,
+    @IsDouble public value: number,
   ) {
   }
 

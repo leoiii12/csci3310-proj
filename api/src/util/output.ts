@@ -1,3 +1,7 @@
+// This is a decorator
+export function IsDouble(target: any, propertyKey: string, parameterIndex: number) {
+}
+
 export class Output<T> {
 
   success: boolean = true;

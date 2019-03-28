@@ -14,10 +14,10 @@ package io.swagger.client.models
 
 /**
  * 
- * @param accessToken 
+ * @param sightId 
  */
-data class AuthenticateOutput (
-    val accessToken: kotlin.String? = null
+data class CreateSightOutput (
+    val sightId: kotlin.Int? = null
 ) {
 
 }

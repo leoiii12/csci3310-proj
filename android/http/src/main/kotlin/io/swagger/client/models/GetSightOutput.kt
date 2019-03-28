@@ -11,13 +11,14 @@
 */
 package io.swagger.client.models
 
+import io.swagger.client.models.SightDto
 
 /**
  * 
- * @param accessToken 
+ * @param sight 
  */
-data class AuthenticateOutput (
-    val accessToken: kotlin.String? = null
+data class GetSightOutput (
+    val sight: SightDto? = null
 ) {
 
 }

@@ -14,10 +14,10 @@ package io.swagger.client.models
 
 /**
  * 
- * @param accessToken 
+ * @param ratingId 
  */
-data class AuthenticateOutput (
-    val accessToken: kotlin.String? = null
+data class CreateRatingOutput (
+    val ratingId: kotlin.Int? = null
 ) {
 
 }

@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "0.0.1",
+    "version": "0.0.2",
     "title": "event331-api"
   },
   "host": "event331-api.azurewebsites.net",

@@ -14,10 +14,10 @@ package io.swagger.client.models
 
 /**
  * 
- * @param accessToken 
+ * @param commentId 
  */
-data class AuthenticateOutput (
-    val accessToken: kotlin.String? = null
+data class CreateCommentOutput (
+    val commentId: kotlin.Int? = null
 ) {
 
 }

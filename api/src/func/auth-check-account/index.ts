@@ -9,8 +9,8 @@ export class CheckAccountInput {
 }
 
 export enum AccountStatus {
-  Exist = 0,
-  NotExist = 1,
+  NotExist = 0,
+  Exist = 1,
 }
 
 export class CheckAccountOutput {

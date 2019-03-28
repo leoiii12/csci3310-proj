@@ -11,19 +11,23 @@
 */
 package io.swagger.client.apis
 
+import io.swagger.client.models.CreateCommentInput
+import io.swagger.client.models.CreateCommentOutput
 
 import io.swagger.client.infrastructure.*
 
-class SwaggerDocApi(basePath: kotlin.String = "https://event331-api.azurewebsites.net") : ApiClient(basePath) {
+class CommentApi(basePath: kotlin.String = "https://event331-api.azurewebsites.net") : ApiClient(basePath) {
 
     /**
     * 
     * 
+    * @param input  
     * @param xAuthorization  (optional, default to )
-    * @return void
+    * @return CreateCommentOutput
     */
-    fun apiSwaggerDoc(xAuthorization: kotlin.String) : Unit {
-        val localVariableBody: kotlin.Any? = null
+    @Suppress("UNCHECKED_CAST")
+    fun apiCommentCreate(input: CreateCommentInput, xAuthorization: kotlin.String) : CreateCommentOutput {
+        val localVariableBody: kotlin.Any? = input
         val localVariableQuery: MultiValueMap = mapOf()
         
         val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
@@ -34,17 +38,17 @@ class SwaggerDocApi(basePath: kotlin.String = "https://event331-api.azurewebsite
         
         val localVariableConfig = RequestConfig(
             RequestMethod.POST,
-            "/api/SwaggerDoc",
+            "/api/Comment/Create",
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<Unit>(
+        val response = request<CreateCommentOutput>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> Unit
+            ResponseType.Success -> (response as Success<*>).data as CreateCommentOutput
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")

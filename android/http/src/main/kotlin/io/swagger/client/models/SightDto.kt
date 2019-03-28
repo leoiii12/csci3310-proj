@@ -11,13 +11,21 @@
 */
 package io.swagger.client.models
 
+import io.swagger.client.models.CommentDto
+import io.swagger.client.models.RatingDto
 
 /**
  * 
- * @param accessToken 
+ * @param id 
+ * @param title 
+ * @param comments 
+ * @param ratings 
  */
-data class AuthenticateOutput (
-    val accessToken: kotlin.String? = null
+data class SightDto (
+    val id: kotlin.Int? = null,
+    val title: kotlin.String? = null,
+    val comments: kotlin.Array<CommentDto>? = null,
+    val ratings: kotlin.Array<RatingDto>? = null
 ) {
 
 }

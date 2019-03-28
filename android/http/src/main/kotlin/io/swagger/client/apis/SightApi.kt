@@ -11,25 +11,25 @@
 */
 package io.swagger.client.apis
 
-import io.swagger.client.models.AuthenticateInput
-import io.swagger.client.models.AuthenticateOutput
-import io.swagger.client.models.CheckAccountInput
-import io.swagger.client.models.CheckAccountOutput
-import io.swagger.client.models.SignUpInput
+import io.swagger.client.models.CreateSightInput
+import io.swagger.client.models.CreateSightOutput
+import io.swagger.client.models.GetSightInput
+import io.swagger.client.models.GetSightOutput
+import io.swagger.client.models.ListSightsOutput
 
 import io.swagger.client.infrastructure.*
 
-class AuthApi(basePath: kotlin.String = "https://event331-api.azurewebsites.net") : ApiClient(basePath) {
+class SightApi(basePath: kotlin.String = "https://event331-api.azurewebsites.net") : ApiClient(basePath) {
 
     /**
     * 
     * 
     * @param input  
     * @param xAuthorization  (optional, default to )
-    * @return AuthenticateOutput
+    * @return CreateSightOutput
     */
     @Suppress("UNCHECKED_CAST")
-    fun apiAuthAuthenticate(input: AuthenticateInput, xAuthorization: kotlin.String) : AuthenticateOutput {
+    fun apiSightCreate(input: CreateSightInput, xAuthorization: kotlin.String) : CreateSightOutput {
         val localVariableBody: kotlin.Any? = input
         val localVariableQuery: MultiValueMap = mapOf()
         
@@ -41,17 +41,17 @@ class AuthApi(basePath: kotlin.String = "https://event331-api.azurewebsites.net"
         
         val localVariableConfig = RequestConfig(
             RequestMethod.POST,
-            "/api/Auth/Authenticate",
+            "/api/Sight/Create",
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<AuthenticateOutput>(
+        val response = request<CreateSightOutput>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as AuthenticateOutput
+            ResponseType.Success -> (response as Success<*>).data as CreateSightOutput
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
@@ -65,10 +65,10 @@ class AuthApi(basePath: kotlin.String = "https://event331-api.azurewebsites.net"
     * 
     * @param input  
     * @param xAuthorization  (optional, default to )
-    * @return CheckAccountOutput
+    * @return GetSightOutput
     */
     @Suppress("UNCHECKED_CAST")
-    fun apiAuthCheckAccount(input: CheckAccountInput, xAuthorization: kotlin.String) : CheckAccountOutput {
+    fun apiSightGet(input: GetSightInput, xAuthorization: kotlin.String) : GetSightOutput {
         val localVariableBody: kotlin.Any? = input
         val localVariableQuery: MultiValueMap = mapOf()
         
@@ -80,17 +80,17 @@ class AuthApi(basePath: kotlin.String = "https://event331-api.azurewebsites.net"
         
         val localVariableConfig = RequestConfig(
             RequestMethod.POST,
-            "/api/Auth/CheckAccount",
+            "/api/Sight/Get",
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<CheckAccountOutput>(
+        val response = request<GetSightOutput>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as CheckAccountOutput
+            ResponseType.Success -> (response as Success<*>).data as GetSightOutput
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
@@ -102,12 +102,12 @@ class AuthApi(basePath: kotlin.String = "https://event331-api.azurewebsites.net"
     /**
     * 
     * 
-    * @param input  
     * @param xAuthorization  (optional, default to )
-    * @return void
+    * @return ListSightsOutput
     */
-    fun apiAuthSignUp(input: SignUpInput, xAuthorization: kotlin.String) : Unit {
-        val localVariableBody: kotlin.Any? = input
+    @Suppress("UNCHECKED_CAST")
+    fun apiSightList(xAuthorization: kotlin.String) : ListSightsOutput {
+        val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mapOf()
         
         val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
@@ -118,17 +118,17 @@ class AuthApi(basePath: kotlin.String = "https://event331-api.azurewebsites.net"
         
         val localVariableConfig = RequestConfig(
             RequestMethod.POST,
-            "/api/Auth/SignUp",
+            "/api/Sight/List",
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<Unit>(
+        val response = request<ListSightsOutput>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> Unit
+            ResponseType.Success -> (response as Success<*>).data as ListSightsOutput
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")

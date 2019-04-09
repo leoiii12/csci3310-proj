@@ -1,5 +1,6 @@
 package com.cuhk.travelligent;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -92,6 +93,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         thread.start();
+
+        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+        startActivity(intent);
+
+
     }
 
 }

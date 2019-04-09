@@ -3,14 +3,21 @@ package com.cuhk.travelligent;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.w3c.dom.Comment;
+
 import java.util.Arrays;
+import java.util.List;
 
 import io.swagger.client.apis.SightApi;
+import io.swagger.client.models.CommentDto;
 import io.swagger.client.models.GetSightInput;
 import io.swagger.client.models.GetSightOutput;
 import io.swagger.client.models.ListSightsOutput;
@@ -41,6 +48,7 @@ public class SightDetailsFragment extends Fragment {
         // Load Sights
         Thread thread = new Thread(new Runnable() {
             SightApi sightApi = new SightApi();
+
             @Override
             public void run() {
                 SharedPreferences prefs = getActivity().getSharedPreferences(Configs.PREFS, MODE_PRIVATE);
@@ -49,6 +57,8 @@ public class SightDetailsFragment extends Fragment {
                 GetSightOutput getSightOutput = sightApi.apiSightGet(new GetSightInput(sightId), "Bearer " + accessToken);
 
                 System.out.println(getSightOutput);
+
+                loadComments(Arrays.asList(getSightOutput.getSight().getComments()));
             }
         });
 
@@ -56,6 +66,19 @@ public class SightDetailsFragment extends Fragment {
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_sight_details, container, false);
+    }
+
+    public void loadComments(final List<CommentDto> comments) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                CommentFragment commentFragment = CommentFragment.newInstance(1, comments);
+                fragmentTransaction.add(R.id.comment_fragment_container, commentFragment);
+                fragmentTransaction.commit();
+            }
+        });
     }
 
 }

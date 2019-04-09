@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Fragment_SightDetails extends Fragment {
+public class Fragment_FlightTickets extends Fragment {
 
 
-    public Fragment_SightDetails() {
+    public Fragment_FlightTickets() {
         // Required empty public constructor
     }
 
@@ -23,7 +23,7 @@ public class Fragment_SightDetails extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fragment__sight_details, container, false);
+        return inflater.inflate(R.layout.fragment_fragment__flight_tickets, container, false);
     }
 
 }

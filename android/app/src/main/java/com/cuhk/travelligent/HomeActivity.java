@@ -83,31 +83,31 @@ public class HomeActivity extends AppCompatActivity
 
         if (id == R.id.nav_sights) {
             setTitle("Sight");
-            Fragment_SightList fragment_sightList = new Fragment_SightList();
+            Fragment_Sights fragment_sightList = new Fragment_Sights();
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             fragmentManager.beginTransaction().replace(R.id.homeFragment, fragment_sightList).commit();
 
         } else if (id == R.id.nav_tickets) {
             setTitle("Flight Tickets");
-            Fragment_FlightTicketList fragment_flightTicketList = new Fragment_FlightTicketList();
+            Fragment_FlightTickets fragment_flightTickets = new Fragment_FlightTickets();
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            fragmentManager.beginTransaction().replace(R.id.homeFragment, fragment_flightTicketList).commit();
+            fragmentManager.beginTransaction().replace(R.id.homeFragment, fragment_flightTickets).commit();
 
         } else if (id == R.id.nav_hotels) {
             setTitle("Hotels");
-            Fragment_HotelList fragment_hotelList = new Fragment_HotelList();
+            Fragment_Hotels fragment_hotels = new Fragment_Hotels();
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            fragmentManager.beginTransaction().replace(R.id.homeFragment, fragment_hotelList).commit();
+            fragmentManager.beginTransaction().replace(R.id.homeFragment, fragment_hotels).commit();
 
         } else if (id == R.id.nav_transports) {
             setTitle("Transports");
-            Fragment_TransportList fragment_transportList = new Fragment_TransportList();
+            Fragment_Transports fragment_transports = new Fragment_Transports();
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            fragmentManager.beginTransaction().replace(R.id.homeFragment, fragment_transportList).commit();
+            fragmentManager.beginTransaction().replace(R.id.homeFragment, fragment_transports).commit();
 
         }
 

@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Fragment_TransportList extends Fragment {
+public class Fragment_Transports extends Fragment {
 
 
-    public Fragment_TransportList() {
+    public Fragment_Transports() {
         // Required empty public constructor
     }
 
@@ -23,7 +23,7 @@ public class Fragment_TransportList extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fragment__transport_list, container, false);
+        return inflater.inflate(R.layout.fragment_fragment__transports, container, false);
     }
 
 }

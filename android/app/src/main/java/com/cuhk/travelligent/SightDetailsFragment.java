@@ -21,6 +21,8 @@ import io.swagger.client.models.CommentDto;
 import io.swagger.client.models.GetSightInput;
 import io.swagger.client.models.GetSightOutput;
 import io.swagger.client.models.ListSightsOutput;
+import io.swagger.client.models.RatingDto;
+import io.swagger.client.models.SightDto;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -45,7 +47,7 @@ public class SightDetailsFragment extends Fragment {
             throw new UnsupportedOperationException();
         }
 
-        // Load Sights
+        // Load Sight
         Thread thread = new Thread(new Runnable() {
             SightApi sightApi = new SightApi();
 
@@ -55,10 +57,12 @@ public class SightDetailsFragment extends Fragment {
                 String accessToken = prefs.getString(Configs.PREFS_ACCESS_TOKEN, null);
 
                 GetSightOutput getSightOutput = sightApi.apiSightGet(new GetSightInput(sightId), "Bearer " + accessToken);
+                SightDto sight = getSightOutput.getSight();
 
-                System.out.println(getSightOutput);
+                System.out.println(sight);
 
-                loadComments(Arrays.asList(getSightOutput.getSight().getComments()));
+                loadRatings(Arrays.asList(sight.getRatings()));
+                loadComments(Arrays.asList(sight.getComments()));
             }
         });
 
@@ -66,6 +70,19 @@ public class SightDetailsFragment extends Fragment {
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_sight_details, container, false);
+    }
+
+    public void loadRatings(final List<RatingDto> ratings) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                RatingFragment ratingFragment = RatingFragment.newInstance(ratings);
+                fragmentTransaction.add(R.id.rating_fragment_container, ratingFragment);
+                fragmentTransaction.commit();
+            }
+        });
     }
 
     public void loadComments(final List<CommentDto> comments) {

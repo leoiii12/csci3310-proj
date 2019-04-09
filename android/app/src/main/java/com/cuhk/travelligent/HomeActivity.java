@@ -1,5 +1,6 @@
 package com.cuhk.travelligent;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import io.swagger.client.models.SightListDto;
 
@@ -25,6 +27,7 @@ public class HomeActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -44,7 +47,16 @@ public class HomeActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
         navigationView.setNavigationItemSelectedListener(this);
+
+        SharedPreferences prefs = getSharedPreferences(Configs.PREFS, MODE_PRIVATE);
+
+        TextView nameView = headerView.findViewById(R.id.name_view);
+        nameView.setText(prefs.getString(Configs.PREFS_FIRST_NAME, "FIRST") + " " + prefs.getString(Configs.PREFS_LAST_NAME, "FIRST"));
+
+        TextView emailAddressView = headerView.findViewById(R.id.email_address_view);
+        emailAddressView.setText(prefs.getString(Configs.PREFS_EMAIL_ADDRESS, "EMAIL_ADDRESS"));
     }
 
     @Override

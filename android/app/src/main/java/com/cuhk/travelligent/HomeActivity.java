@@ -3,8 +3,9 @@ package com.cuhk.travelligent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.cuhk.travelligent.sight.CreateSightFragment;
 import com.cuhk.travelligent.sight.SightDetailsFragment;
 import com.cuhk.travelligent.sight.SightFragment;
 
@@ -38,8 +40,17 @@ public class HomeActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Fragment f = getSupportFragmentManager().findFragmentById(R.id.homeFragment);
+
+                if (f instanceof SightFragment) {
+                    setTitle("Create Sight");
+                    CreateSightFragment createSightFragment = CreateSightFragment.newInstance("", null, null);
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    fragmentManager.beginTransaction().replace(R.id.homeFragment, createSightFragment).commit();
+                } else {
+                    Log.d("HomeActivity.fab.setOnClickListener", "Else Caught");
+                }
             }
         });
 
@@ -102,7 +113,7 @@ public class HomeActivity extends AppCompatActivity
 
         if (id == R.id.nav_sights) {
             setTitle("Sights");
-            SightFragment sightFragment = new SightFragment();
+            SightFragment sightFragment = SightFragment.newInstance(1);
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             fragmentManager.beginTransaction().replace(R.id.homeFragment, sightFragment).commit();

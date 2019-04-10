@@ -1,5 +1,6 @@
 package com.cuhk.travelligent.sight;
 
+import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.cuhk.travelligent.Configs;
 import com.cuhk.travelligent.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -23,6 +25,9 @@ import java.util.List;
 
 import io.swagger.client.apis.SightApi;
 import io.swagger.client.models.CreateSightInput;
+import io.swagger.client.models.CreateSightOutput;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,6 +47,7 @@ public class CreateSightFragment extends Fragment implements OnMapReadyCallback 
 
     private TextView titleView;
     private LatLng selectedLatLng;
+    private Button createButton;
 
     private GoogleMap googleMap;
     private Geocoder geocoder;
@@ -98,14 +104,26 @@ public class CreateSightFragment extends Fragment implements OnMapReadyCallback 
         titleView = (TextView) view.findViewById(R.id.title_view);
         titleView.setText(defaultTitle);
 
-        Button createButton = (Button) view.findViewById(R.id.create_button);
+        createButton = (Button) view.findViewById(R.id.create_button);
         createButton.setOnClickListener(new View.OnClickListener() {
             SightApi sightApi = new SightApi();
 
             @Override
             public void onClick(View v) {
-                System.out.println(titleView.getText());
-                System.out.println(selectedLatLng);
+                createButton.setEnabled(false);
+
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        SharedPreferences prefs = getActivity().getSharedPreferences(Configs.PREFS, MODE_PRIVATE);
+                        String accessToken = prefs.getString(Configs.PREFS_ACCESS_TOKEN, null);
+
+                        CreateSightInput createSightInput = new CreateSightInput(titleView.getText().toString(), selectedLatLng.latitude, selectedLatLng.longitude);
+                        CreateSightOutput createSightOutput = sightApi.apiSightCreate(createSightInput, "Bearer " + accessToken);
+                    }
+                });
+
+                thread.start();
             }
         });
 
@@ -135,7 +153,7 @@ public class CreateSightFragment extends Fragment implements OnMapReadyCallback 
                 googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 
                 try {
-                    List<Address> addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
+                    List<Address> addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 10);
 
                     if (addresses.size() >= 1) {
                         Address address = addresses.get(0);

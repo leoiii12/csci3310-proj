@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -46,8 +47,7 @@ public class HomeActivity extends AppCompatActivity
                     setTitle("Create Sight");
                     CreateSightFragment createSightFragment = CreateSightFragment.newInstance("", null, null);
                     FragmentManager fragmentManager = getSupportFragmentManager();
-                    fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                    fragmentManager.beginTransaction().replace(R.id.homeFragment, createSightFragment).commit();
+                    fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.homeFragment, createSightFragment).commit();
                 } else {
                     Log.d("HomeActivity.fab.setOnClickListener", "Else Caught");
                 }
@@ -136,7 +136,6 @@ public class HomeActivity extends AppCompatActivity
         sightDetailsFragment.setArguments(args);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        fragmentManager.beginTransaction().replace(R.id.homeFragment, sightDetailsFragment).commit();
+        fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.homeFragment, sightDetailsFragment).commit();
     }
 }

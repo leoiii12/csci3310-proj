@@ -1,4 +1,4 @@
-package com.cuhk.travelligent;
+package com.cuhk.travelligent.sight;
 
 
 import android.content.SharedPreferences;
@@ -10,6 +10,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.cuhk.travelligent.CommentFragment;
+import com.cuhk.travelligent.Configs;
+import com.cuhk.travelligent.R;
+import com.cuhk.travelligent.RatingFragment;
 
 import org.w3c.dom.Comment;
 

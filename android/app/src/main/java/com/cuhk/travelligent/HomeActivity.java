@@ -16,9 +16,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.cuhk.travelligent.sight.SightDetailsFragment;
+import com.cuhk.travelligent.sight.SightFragment;
+
 import io.swagger.client.models.SightListDto;
 
-import static com.cuhk.travelligent.SightDetailsFragment.SightDetails_SightId;
+import static com.cuhk.travelligent.sight.SightDetailsFragment.SightDetails_SightId;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, SightFragment.OnListFragmentInteractionListener {

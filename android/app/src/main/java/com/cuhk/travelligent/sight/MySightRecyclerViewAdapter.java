@@ -1,4 +1,4 @@
-package com.cuhk.travelligent;
+package com.cuhk.travelligent.sight;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,7 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.cuhk.travelligent.SightFragment.OnListFragmentInteractionListener;
+import com.cuhk.travelligent.R;
+import com.cuhk.travelligent.sight.SightFragment.OnListFragmentInteractionListener;
 
 import java.util.List;
 

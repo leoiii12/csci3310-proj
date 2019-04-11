@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -111,8 +112,11 @@ public class SightFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 CreateSightFragment createSightFragment = CreateSightFragment.newInstance("", null, null);
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.homeFragment, createSightFragment).commit();
+                
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction
+                        .addToBackStack(null)
+                        .replace(R.id.homeFragment, createSightFragment).commit();
             }
         });
 

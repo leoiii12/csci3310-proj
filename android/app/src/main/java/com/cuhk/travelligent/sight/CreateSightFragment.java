@@ -120,6 +120,8 @@ public class CreateSightFragment extends Fragment implements OnMapReadyCallback 
 
                         CreateSightInput createSightInput = new CreateSightInput(titleView.getText().toString(), selectedLatLng.latitude, selectedLatLng.longitude);
                         CreateSightOutput createSightOutput = sightApi.apiSightCreate(createSightInput, "Bearer " + accessToken);
+
+                        getFragmentManager().popBackStack();
                     }
                 });
 

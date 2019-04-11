@@ -37,23 +37,6 @@ public class HomeActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment f = getSupportFragmentManager().findFragmentById(R.id.homeFragment);
-
-                if (f instanceof SightFragment) {
-                    setTitle("Create Sight");
-                    CreateSightFragment createSightFragment = CreateSightFragment.newInstance("", null, null);
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.homeFragment, createSightFragment).commit();
-                } else {
-                    Log.d("HomeActivity.fab.setOnClickListener", "Else Caught");
-                }
-            }
-        });
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

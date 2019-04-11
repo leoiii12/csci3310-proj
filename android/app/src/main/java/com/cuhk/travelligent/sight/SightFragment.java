@@ -3,10 +3,13 @@ package com.cuhk.travelligent.sight;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,9 +35,8 @@ import static android.content.Context.MODE_PRIVATE;
  */
 public class SightFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
+
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
 
@@ -45,7 +47,6 @@ public class SightFragment extends Fragment {
     public SightFragment() {
     }
 
-    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
     public static SightFragment newInstance(int columnCount) {
         SightFragment fragment = new SightFragment();
@@ -70,42 +71,50 @@ public class SightFragment extends Fragment {
         getActivity().setTitle("Sights");
 
         View view = inflater.inflate(R.layout.fragment_sight_list, container, false);
+
+        final RecyclerView recyclerView = view.findViewById(R.id.list);
+        Context context = view.getContext();
+        if (mColumnCount <= 1) {
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        } else {
+            recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+        }
+
+        // Load Sights
         final List<SightListDto> sights = new ArrayList<>();
+        Thread thread = new Thread(new Runnable() {
+            SightApi sightApi = new SightApi();
+
+            @Override
+            public void run() {
+                SharedPreferences prefs = getActivity().getSharedPreferences(Configs.PREFS, MODE_PRIVATE);
+                String accessToken = prefs.getString(Configs.PREFS_ACCESS_TOKEN, null);
+
+                ListSightsOutput listSightsOutput = sightApi.apiSightList("Bearer " + accessToken);
+                sights.addAll(Arrays.asList(listSightsOutput.getSights()));
+
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        recyclerView.getAdapter().notifyDataSetChanged();
+                    }
+                });
+            }
+        });
+        thread.start();
 
         // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            final RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+        recyclerView.setAdapter(new MySightRecyclerViewAdapter(sights, mListener));
+
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CreateSightFragment createSightFragment = CreateSightFragment.newInstance("", null, null);
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.homeFragment, createSightFragment).commit();
             }
-
-            // Load Sights
-            Thread thread = new Thread(new Runnable() {
-                SightApi sightApi = new SightApi();
-                @Override
-                public void run() {
-                    SharedPreferences prefs = getActivity().getSharedPreferences(Configs.PREFS, MODE_PRIVATE);
-                    String accessToken = prefs.getString(Configs.PREFS_ACCESS_TOKEN, null);
-
-                    ListSightsOutput listSightsOutput = sightApi.apiSightList("Bearer " + accessToken);
-                    sights.addAll(Arrays.asList(listSightsOutput.getSights()));
-
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            recyclerView.getAdapter().notifyDataSetChanged();
-                        }
-                    });
-                }
-            });
-
-            thread.start();
-
-            recyclerView.setAdapter(new MySightRecyclerViewAdapter(sights, mListener));
-        }
+        });
 
         return view;
     }

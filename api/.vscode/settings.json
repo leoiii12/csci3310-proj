@@ -9,5 +9,6 @@
   "importSorter.generalConfiguration.sortOnBeforeSave": true,
   "importSorter.importStringConfiguration.trailingComma": "multiLine",
   "files.eol": "\n",
-  "gulp.autoDetect": "off"
+  "gulp.autoDetect": "off",
+  "azureFunctions.projectSubpath": "src"
 }

@@ -131,7 +131,7 @@ async function libsPacks() {
       cache: true,
       cacheDir: '.cache',
       contentHash: false,
-      minify: false,
+      minify: true,
       scopeHoist: false,
       target: 'node',
       bundleNodeModules: true,

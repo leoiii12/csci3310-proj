@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import { dump } from 'js-yaml';
+import { isTemplateSpan } from 'typescript';
 
 import { dtoEntries } from './dto';
 import { functionEntries } from './function';
@@ -129,18 +130,20 @@ for (const dtoEntry of dtoEntries) {
       continue;
     }
 
-    definition.properties[member.name] = type.endsWith('[]') ?
-      {
+    if (type.endsWith('[]')) {
+      definition.properties[member.name] = {
         type: 'array',
         items: {
-          type: normalizeToSwaggerType(type.replace('[]', '')),
+          type: type === 'number[]' ? 'integer' : normalizeToSwaggerType(type.replace('[]', '')),
         },
-      } :
-      {
+      };
+    } else {
+      definition.properties[member.name] = {
         type: normalizeToSwaggerType(type),
       };
+    }
 
-    if (member.type === 'number') {
+    if (type === 'number') {
       definition.properties[member.name].type = 'integer';
       definition.properties[member.name].format = undefined;
     }

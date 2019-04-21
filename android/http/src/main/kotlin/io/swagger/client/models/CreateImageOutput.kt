@@ -11,21 +11,15 @@
 */
 package io.swagger.client.models
 
-import io.swagger.client.models.CommentDto
-import io.swagger.client.models.RatingDto
 
 /**
  * 
- * @param id 
- * @param title 
- * @param comments 
- * @param ratings 
+ * @param imageId 
+ * @param blobUrl 
  */
-data class SightDto (
-    val id: kotlin.Int? = null,
-    val title: kotlin.String? = null,
-    val comments: kotlin.Array<CommentDto>? = null,
-    val ratings: kotlin.Array<RatingDto>? = null
+data class CreateImageOutput (
+    val imageId: kotlin.Int? = null,
+    val blobUrl: kotlin.String? = null
 ) {
 
 }

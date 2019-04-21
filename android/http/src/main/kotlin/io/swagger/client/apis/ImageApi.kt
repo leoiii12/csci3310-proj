@@ -11,23 +11,21 @@
 */
 package io.swagger.client.apis
 
-import io.swagger.client.models.CreateRatingInput
-import io.swagger.client.models.CreateRatingOutput
+import io.swagger.client.models.CreateImageOutput
 
 import io.swagger.client.infrastructure.*
 
-class RatingApi(basePath: kotlin.String = "https://event331-api.azurewebsites.net") : ApiClient(basePath) {
+class ImageApi(basePath: kotlin.String = "https://event331-api.azurewebsites.net") : ApiClient(basePath) {
 
     /**
     * 
     * 
-    * @param input  
     * @param xAuthorization  (optional, default to )
-    * @return CreateRatingOutput
+    * @return CreateImageOutput
     */
     @Suppress("UNCHECKED_CAST")
-    fun apiRatingCreate(input: CreateRatingInput, xAuthorization: kotlin.String) : CreateRatingOutput {
-        val localVariableBody: kotlin.Any? = input
+    fun apiImageCreate(xAuthorization: kotlin.String) : CreateImageOutput {
+        val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mapOf()
         
         val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
@@ -38,17 +36,17 @@ class RatingApi(basePath: kotlin.String = "https://event331-api.azurewebsites.ne
         
         val localVariableConfig = RequestConfig(
             RequestMethod.POST,
-            "/api/Rating/Create",
+            "/api/Image/Create",
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<CreateRatingOutput>(
+        val response = request<CreateImageOutput>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as CreateRatingOutput
+            ResponseType.Success -> (response as Success<*>).data as CreateImageOutput
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")

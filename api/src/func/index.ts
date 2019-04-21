@@ -6,6 +6,8 @@ export * from './comment-create';
 
 export * from './hello-world';
 
+export * from './image-create';
+
 export * from './init';
 
 export * from './rating-create';

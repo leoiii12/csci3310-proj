@@ -4,7 +4,7 @@ Azure Functions + MSSQL + VSCode
 
 # Useful commands
 ```bash
-npm run typeorm:cli -- migration:generate -c dev -n 'Double'
+npm run typeorm:cli -- migration:generate -c default -n 'Image'
 npm run typeorm:cli -- migration:run -c dev
 npm run typeorm:cli -- migration:revert -c dev
 npm run build:dev

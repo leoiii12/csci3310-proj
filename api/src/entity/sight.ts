@@ -17,6 +17,9 @@ export class Sight {
   @Column('simple-json')
   latLng: { latitude?: number; longitude?: number; } = {};
 
+  @Column('simple-array', { default: '' })
+  imageIds: number[] = [];
+
   @OneToMany(type => Comment, c => c.sight)
   comments: Comment[];
 

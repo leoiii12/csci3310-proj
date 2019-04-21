@@ -1,5 +1,5 @@
-import { Comment, Rating } from '@event/entity';
-import { createComment, CreateCommentInput, createRating, CreateRatingInput } from '@event/func';
+import { Comment } from '@event/entity';
+import { createComment, CreateCommentInput } from '@event/func';
 import { DB } from '@event/util';
 
 import { createMockAccounts, createMockSights, init, sights, users } from '../util/mock';

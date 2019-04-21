@@ -1,7 +1,7 @@
 {
   "name": "event331-api",
   "private": true,
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "scripts": {
     "typeorm:cli": "ts-node ./node_modules/typeorm/cli.js",

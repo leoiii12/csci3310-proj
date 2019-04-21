@@ -11,14 +11,15 @@
 */
 package io.swagger.client.models
 
-import io.swagger.client.models.MyUserDto
 
 /**
  * 
- * @param myUser 
+ * @param id 
+ * @param blobUrl 
  */
-data class GetMyUserOutput (
-    val myUser: MyUserDto? = null
+data class ImageDto (
+    val id: kotlin.Int? = null,
+    val blobUrl: kotlin.String? = null
 ) {
 
 }

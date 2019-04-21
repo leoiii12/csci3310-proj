@@ -24,3 +24,20 @@ export class Image {
   createDate: Date;
 
 }
+
+export class ImageDto {
+
+  constructor(
+    public id: number,
+    public blobUrl: string,
+  ) {
+  }
+
+  static from(image: Image): ImageDto {
+    return new ImageDto(
+      image.id,
+      image.blobUrl,
+    );
+  }
+
+}

@@ -2,8 +2,7 @@ import {
     Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { Comment, CommentDto, Rating, RatingDto } from './';
-import { User } from './user';
+import { Comment, CommentDto, Image, ImageDto, Rating, RatingDto, User } from './';
 
 @Entity('sight')
 export class Sight {
@@ -42,15 +41,17 @@ export class SightDto {
   constructor(
     public id: number,
     public title: string,
+    public images: ImageDto[],
     public comments: CommentDto[],
     public ratings: RatingDto[],
   ) {
   }
 
-  static from(sight: Sight): SightDto {
+  static from(sight: Sight, images: Image[]): SightDto {
     return new SightDto(
       sight.id,
       sight.title,
+      images.map(i => ImageDto.from(i)),
       sight.comments,
       sight.ratings,
     );
@@ -63,13 +64,15 @@ export class SightListDto {
   constructor(
     public id: number,
     public title: string,
+    public image: ImageDto,
   ) {
   }
 
-  static from(sight: Sight): SightListDto {
+  static from(sight: Sight, imagesDict: { [id: number]: Image }): SightListDto {
     return new SightListDto(
       sight.id,
       sight.title,
+      ImageDto.from(imagesDict[sight.imageIds[0]]),
     );
   }
 

@@ -1,6 +1,6 @@
 import { hash } from 'bcryptjs';
 
-import { Role, Sex, Sight, User } from '@event/entity';
+import { Image, Role, Sex, Sight, User } from '@event/entity';
 import { DB } from '@event/util';
 
 // DON'T REMOVE ANY STRUCTURE HERE
@@ -25,6 +25,14 @@ export const users = {
   },
 };
 
+export const images = {
+  image_1: {
+    id: 1,
+    blobUrl: '',
+    createUserId: users.user_1.id,
+  },
+};
+
 export const sights = {
   sight_1: {
     id: 1,
@@ -33,6 +41,9 @@ export const sights = {
       latitude: 22.4207731,
       longitude: 114.2075137,
     },
+    imageIds: [
+      images.image_1.id,
+    ],
     createUserId: users.user_1.id,
   },
 };
@@ -63,12 +74,24 @@ export const createMockAccounts = async () => {
 export const createMockSights = async () => {
   const connection = await DB.getConnection();
   const sightRepository = connection.getRepository(Sight);
+  const imageRepository = connection.getRepository(Image);
+
+  for (const image of Object.values(images)) {
+    const i = new Image();
+    i.id = image.id;
+    i.blobUrl = image.blobUrl;
+    i.isPublic = true;
+    i.createUserId = image.createUserId;
+
+    await imageRepository.insert(i);
+  }
 
   for (const sight of Object.values(sights)) {
     const s = new Sight();
     s.id = sight.id;
     s.title = sight.title;
     s.latLng = sight.latLng;
+    s.imageIds = sight.imageIds;
     s.createUserId = sight.createUserId;
 
     await sightRepository.insert(s);

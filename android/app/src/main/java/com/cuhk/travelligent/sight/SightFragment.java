@@ -1,5 +1,6 @@
 package com.cuhk.travelligent.sight;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -41,6 +42,8 @@ public class SightFragment extends Fragment {
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
 
+    private Activity activity;
+
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -69,7 +72,8 @@ public class SightFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        getActivity().setTitle("Sights");
+        activity = getActivity();
+        activity.setTitle("Sights");
 
         View view = inflater.inflate(R.layout.fragment_sight_list, container, false);
 
@@ -88,13 +92,13 @@ public class SightFragment extends Fragment {
 
             @Override
             public void run() {
-                SharedPreferences prefs = getActivity().getSharedPreferences(Configs.PREFS, MODE_PRIVATE);
+                SharedPreferences prefs = activity.getSharedPreferences(Configs.PREFS, MODE_PRIVATE);
                 String accessToken = prefs.getString(Configs.PREFS_ACCESS_TOKEN, null);
 
                 ListSightsOutput listSightsOutput = sightApi.apiSightList("Bearer " + accessToken);
                 sights.addAll(Arrays.asList(listSightsOutput.getSights()));
 
-                getActivity().runOnUiThread(new Runnable() {
+                activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         recyclerView.getAdapter().notifyDataSetChanged();
@@ -107,12 +111,13 @@ public class SightFragment extends Fragment {
         // Set the adapter
         recyclerView.setAdapter(new MySightRecyclerViewAdapter(sights, mListener));
 
+        // Set the fab
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CreateSightFragment createSightFragment = CreateSightFragment.newInstance("", null, null);
-                
+
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction
                         .addToBackStack(null)

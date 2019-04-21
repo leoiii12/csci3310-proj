@@ -11,6 +11,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <Button
+            android:id="@+id/select_cover_image_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Image" />
+
+        <ImageView
+            android:id="@+id/cover_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <EditText
             android:id="@+id/title_view"
             android:layout_width="match_parent"
@@ -30,6 +41,7 @@
             android:id="@+id/create_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:text="Create" />
 
     </LinearLayout>

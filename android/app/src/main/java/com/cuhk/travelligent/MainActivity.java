@@ -2,28 +2,16 @@ package com.cuhk.travelligent;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import io.swagger.client.apis.AuthApi;
-import io.swagger.client.apis.CommentApi;
-import io.swagger.client.apis.RatingApi;
-import io.swagger.client.apis.SightApi;
 import io.swagger.client.apis.UserApi;
 import io.swagger.client.models.AuthenticateInput;
 import io.swagger.client.models.AuthenticateOutput;
 import io.swagger.client.models.CheckAccountInput;
 import io.swagger.client.models.CheckAccountOutput;
-import io.swagger.client.models.CreateCommentInput;
-import io.swagger.client.models.CreateCommentOutput;
-import io.swagger.client.models.CreateRatingInput;
-import io.swagger.client.models.CreateRatingOutput;
-import io.swagger.client.models.CreateSightInput;
-import io.swagger.client.models.CreateSightOutput;
 import io.swagger.client.models.GetMyUserOutput;
-import io.swagger.client.models.GetSightInput;
-import io.swagger.client.models.GetSightOutput;
-import io.swagger.client.models.ListSightsOutput;
 import io.swagger.client.models.MyUserDto;
 import io.swagger.client.models.SignUpInput;
 

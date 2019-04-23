@@ -4,6 +4,10 @@ export * from './auth-sign-up';
 
 export * from './comment-create';
 
+export * from './flight-create';
+export * from './flight-get';
+export * from './flight-list';
+
 export * from './hello-world';
 
 export * from './hotel-create';

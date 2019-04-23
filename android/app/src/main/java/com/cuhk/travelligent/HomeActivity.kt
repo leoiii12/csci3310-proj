@@ -10,11 +10,9 @@ import com.google.android.material.navigation.NavigationView
 import androidx.fragment.app.FragmentManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import android.view.Menu
-import androidx.appcompat.widget.SearchView
+import com.cuhk.travelligent.page.flights.FlightsFragment
 import com.cuhk.travelligent.page.sights.SightsFragment
 import kotlinx.android.synthetic.main.nav_header_home.view.*
-import androidx.core.view.MenuItemCompat
 import com.cuhk.travelligent.page.hotels.HotelsFragment
 
 
@@ -98,10 +96,20 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 supportFragmentManager
                     .popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
-                val sightsFragment = HotelsFragment()
+                val hotelsFragment = HotelsFragment()
                 supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.home_fragment, sightsFragment)
+                    .replace(R.id.home_fragment, hotelsFragment)
+                    .commit()
+            }
+            R.id.nav_flight-> {
+                supportFragmentManager
+                    .popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
+                val flightsFragment = FlightsFragment()
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.home_fragment, flightsFragment)
                     .commit()
             }
             R.id.nav_log_out -> {

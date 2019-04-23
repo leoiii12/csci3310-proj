@@ -14,6 +14,11 @@
                 android:icon="@drawable/baseline_hotel_24"
                 android:title="Hotels"/>
 
+        <item
+                android:id="@+id/nav_flight"
+                android:icon="@drawable/baseline_flight_24"
+                android:title="Flights"/>
+
     </group>
 
     <item android:title="Settings">

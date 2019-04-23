@@ -235,8 +235,8 @@ class HotelDetailsFragment : Fragment() {
         // View Comments
         viewCommentsButton.setOnClickListener {
             val fragment = CommentsFragment.newInstance(
-                hotelId!!,
-                CommentsFragmentSerializableArg(hotel.comments!!.asList())
+                hotelId = hotelId!!,
+                serializableArg = CommentsFragmentSerializableArg(hotel.comments!!.asList())
             )
             fragmentManager!!.beginTransaction()
                 .addToBackStack(null)

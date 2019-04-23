@@ -209,8 +209,8 @@ class FlightDetailsFragment : Fragment() {
         // View Comments
         viewCommentsButton.setOnClickListener {
             val fragment = CommentsFragment.newInstance(
-                flightId!!,
-                CommentsFragmentSerializableArg(flight.comments!!.asList())
+                flightId = flightId!!,
+                serializableArg = CommentsFragmentSerializableArg(flight.comments!!.asList())
             )
             fragmentManager!!.beginTransaction()
                 .addToBackStack(null)

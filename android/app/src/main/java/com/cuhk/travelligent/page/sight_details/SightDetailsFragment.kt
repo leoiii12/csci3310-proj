@@ -235,8 +235,8 @@ class SightDetailsFragment : Fragment() {
         // View Comments
         viewCommentsButton.setOnClickListener {
             val fragment = CommentsFragment.newInstance(
-                sightId!!,
-                CommentsFragmentSerializableArg(sight.comments!!.asList())
+                sightId = sightId!!,
+                serializableArg = CommentsFragmentSerializableArg(sight.comments!!.asList())
             )
             fragmentManager!!.beginTransaction()
                 .addToBackStack(null)

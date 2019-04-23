@@ -227,7 +227,7 @@ class SightDetailsFragment : Fragment() {
             fragments.forEach { fragmentTransaction.add(R.id.comments, it) }
             fragmentTransaction.commit()
 
-            firstCommentBanner.visibility = View.INVISIBLE
+            firstCommentBanner.visibility = View.GONE
         } else {
             firstCommentBanner.visibility = View.VISIBLE
         }

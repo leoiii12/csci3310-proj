@@ -49,6 +49,16 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         ) + " " + prefs.getString(Configs.PREFS_LAST_NAME, "FIRST")
         emailAddressView.text = prefs.getString(Configs.PREFS_EMAIL_ADDRESS, "EMAIL_ADDRESS")
 
+        // Default
+        supportFragmentManager
+            .popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
+        val sightsFragment = SightsFragment()
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.home_fragment, sightsFragment)
+            .commit()
+
     }
 
     override fun onBackPressed() {

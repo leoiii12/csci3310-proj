@@ -2,7 +2,7 @@ import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } f
 
 import { IsDouble } from '@event/util';
 
-import { Flight, Sight, Transport, User } from './';
+import { Flight, Hotel, Sight, User } from './';
 import { UserDto } from './user';
 
 @Entity('rating')
@@ -35,11 +35,11 @@ export class Rating {
   @Column({ nullable: true })
   sightId: number;
 
-  @ManyToOne(type => Transport, t => t.ratings)
-  transport: Transport;
+  @ManyToOne(type => Hotel, t => t.ratings)
+  hotel: Hotel;
 
   @Column({ nullable: true })
-  transportId: number;
+  hotelId: number;
 
 }
 

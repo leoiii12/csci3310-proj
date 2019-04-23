@@ -6,6 +6,10 @@ export * from './comment-create';
 
 export * from './hello-world';
 
+export * from './hotel-create';
+export * from './hotel-get';
+export * from './hotel-list';
+
 export * from './image-create';
 
 export * from './init';

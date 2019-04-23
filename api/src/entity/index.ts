@@ -1,9 +1,9 @@
 import { Comment } from './comment';
 import { Flight } from './flight';
+import { Hotel } from './hotel';
 import { Image } from './image';
 import { Rating } from './rating';
 import { Sight } from './sight';
-import { Transport } from './transport';
 import { Role, Sex, User } from './user';
 
 export * from './comment';
@@ -11,7 +11,7 @@ export * from './flight';
 export * from './image';
 export * from './rating';
 export * from './sight';
-export * from './transport';
+export * from './hotel';
 export * from './user';
 
 export const ENTITIES = [
@@ -20,7 +20,7 @@ export const ENTITIES = [
   Image,
   Rating,
   Sight,
-  Transport,
+  Hotel,
   Role,
   Sex,
   User,

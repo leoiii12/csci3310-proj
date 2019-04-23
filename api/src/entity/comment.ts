@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-import { Flight, Sight, Transport, User } from './';
+import { Flight, Hotel, Sight, User } from './';
 import { UserDto } from './user';
 
 @Entity('comment')
@@ -33,11 +33,11 @@ export class Comment {
   @Column({ nullable: true })
   sightId: number;
 
-  @ManyToOne(type => Transport)
-  transport: Transport;
+  @ManyToOne(type => Hotel)
+  hotel: Hotel;
 
   @Column({ nullable: true })
-  transportId: number;
+  hotelId: number;
 
 }
 

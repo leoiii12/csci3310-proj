@@ -20,7 +20,7 @@ export class CreateCommentInput {
 
   @IsOptional()
   @IsInt()
-  transportId?: number;
+  hotelId?: number;
 
 }
 
@@ -45,8 +45,8 @@ export async function createComment(input: CreateCommentInput, userId?: number, 
     comment.flightId = input.flightId;
   } else if (input.sightId !== undefined) {
     comment.sightId = input.sightId;
-  } else if (input.transportId !== undefined) {
-    comment.transportId = input.transportId;
+  } else if (input.hotelId !== undefined) {
+    comment.hotelId = input.hotelId;
   }
 
   const insertResult = await commentRepository.insert(comment);

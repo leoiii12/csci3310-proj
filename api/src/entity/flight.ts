@@ -13,6 +13,9 @@ export class Flight {
   @Column()
   title: string;
 
+  @Column('simple-array', { default: '' })
+  imageIds: number[] = [];
+
   @OneToMany(type => Comment, c => c.flight)
   comments: Comment[];
 

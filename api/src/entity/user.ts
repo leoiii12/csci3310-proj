@@ -3,7 +3,7 @@ import {
     UpdateDateColumn,
 } from 'typeorm';
 
-import { Comment, Flight, Image, Rating, Sight, Transport } from './';
+import { Comment, Flight, Hotel, Image, Rating, Sight } from './';
 
 export enum Role {
   Users = 1000,
@@ -54,8 +54,8 @@ export class User {
   @OneToMany(type => Sight, s => s.createUser)
   sights: Sight[];
 
-  @OneToMany(type => Transport, t => t.createUser)
-  transports: Transport[];
+  @OneToMany(type => Hotel, t => t.createUser)
+  hotels: Hotel[];
 
   @CreateDateColumn()
   enrolmentDate: Date;

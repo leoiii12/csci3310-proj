@@ -21,7 +21,7 @@ export class CreateRatingInput {
 
   @IsOptional()
   @IsInt()
-  transportId?: number;
+  hotelId?: number;
 
 }
 
@@ -33,7 +33,7 @@ export class CreateRatingOutput {
 export async function createRating(input: CreateRatingInput, userId?: number, roles?: Role[]): Promise<CreateRatingOutput> {
   if (userId === undefined) throw new UnauthorizedError();
   if (roles === undefined) throw new UnauthorizedError();
-  if (((input.flightId === undefined ? 0 : 1) + (input.sightId === undefined ? 0 : 1) + (input.transportId === undefined ? 0 : 1)) !== 1) throw new ValidationError();
+  if (((input.flightId === undefined ? 0 : 1) + (input.sightId === undefined ? 0 : 1) + (input.hotelId === undefined ? 0 : 1)) !== 1) throw new ValidationError();
 
   const connection = await DB.getConnection();
   const ratingRepository = connection.getRepository(Rating);
@@ -43,7 +43,7 @@ export async function createRating(input: CreateRatingInput, userId?: number, ro
       createUserId: userId,
       flightId: input.flightId === undefined ? null : input.flightId,
       sightId: input.sightId === undefined ? null : input.sightId,
-      transportId: input.transportId === undefined ? null : input.transportId,
+      hotelId: input.hotelId === undefined ? null : input.hotelId,
     },
   });
 
@@ -53,7 +53,7 @@ export async function createRating(input: CreateRatingInput, userId?: number, ro
     rating.createUserId = userId;
     rating.flightId = input.flightId as number;
     rating.sightId = input.sightId as number;
-    rating.transportId = input.transportId as number;
+    rating.hotelId = input.hotelId as number;
   }
 
   rating.value = input.value;

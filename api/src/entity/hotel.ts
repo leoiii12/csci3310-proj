@@ -2,12 +2,10 @@ import {
     Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { IsDouble } from '@event/util';
+import { Comment, CommentDto, Image, ImageDto, LatLng, Rating, RatingDto, User } from './';
 
-import { Comment, CommentDto, Image, ImageDto, Rating, RatingDto, User } from './';
-
-@Entity('sight')
-export class Sight {
+@Entity('hotel')
+export class Hotel {
 
   @PrimaryGeneratedColumn()
   id: number;
@@ -21,13 +19,13 @@ export class Sight {
   @Column('simple-array', { default: '' })
   imageIds: number[] = [];
 
-  @OneToMany(type => Comment, c => c.sight)
+  @OneToMany(type => Comment, c => c.hotel)
   comments: Comment[];
 
-  @OneToMany(type => Rating, r => r.sight)
+  @OneToMany(type => Rating, r => r.hotel)
   ratings: Rating[];
 
-  @ManyToOne(type => User, u => u.sights)
+  @ManyToOne(type => User, u => u.hotels)
   createUser: User;
 
   @Column()
@@ -38,15 +36,8 @@ export class Sight {
 
 }
 
-export class LatLng {
-  constructor(
-    @IsDouble public latitude: number | undefined,
-    @IsDouble public longitude: number | undefined,
-  ) {
-  }
-}
 
-export class SightDto {
+export class HotelDto {
 
   constructor(
     public id: number,
@@ -58,8 +49,8 @@ export class SightDto {
   ) {
   }
 
-  static from(sight: Sight, images: Image[]): SightDto {
-    return new SightDto(
+  static from(sight: Hotel, images: Image[]): HotelDto {
+    return new HotelDto(
       sight.id,
       sight.title,
       new LatLng(sight.latLng.latitude, sight.latLng.longitude),
@@ -71,7 +62,7 @@ export class SightDto {
 
 }
 
-export class SightListDto {
+export class HotelListDto {
 
   constructor(
     public id: number,
@@ -80,8 +71,8 @@ export class SightListDto {
   ) {
   }
 
-  static from(sight: Sight, imagesDict: { [id: number]: Image }): SightListDto {
-    return new SightListDto(
+  static from(sight: Hotel, imagesDict: { [id: number]: Image }): HotelListDto {
+    return new HotelListDto(
       sight.id,
       sight.title,
       ImageDto.from(imagesDict[sight.imageIds[0]]),

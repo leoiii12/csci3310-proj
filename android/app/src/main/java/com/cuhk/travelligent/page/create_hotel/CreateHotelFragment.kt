@@ -63,7 +63,9 @@ class CreateHotelFragment : Fragment(), OnMapReadyCallback {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_create_hotel, container, false)
-        val activity = activity
+        val activity = activity!!
+
+        activity.title = "Create Hotel"
 
         selectCoverImageButton = view.findViewById(R.id.select_cover_image_button) as Button
         coverImageView = view.findViewById(R.id.cover_image) as ImageView
@@ -74,7 +76,7 @@ class CreateHotelFragment : Fragment(), OnMapReadyCallback {
             selectCoverImageButton.isEnabled = false
             createButton.isEnabled = true
 
-            val prefs = activity!!.getSharedPreferences(Configs.PREFS, MODE_PRIVATE)
+            val prefs = activity.getSharedPreferences(Configs.PREFS, MODE_PRIVATE)
             val accessToken = prefs.getString(Configs.PREFS_ACCESS_TOKEN, null)
 
             val imageApi = ImageApi()
@@ -94,7 +96,7 @@ class CreateHotelFragment : Fragment(), OnMapReadyCallback {
         createButton.setOnClickListener {
             createButton.isEnabled = false
 
-            val prefs = activity!!.getSharedPreferences(Configs.PREFS, MODE_PRIVATE)
+            val prefs = activity.getSharedPreferences(Configs.PREFS, MODE_PRIVATE)
             val accessToken = prefs.getString(Configs.PREFS_ACCESS_TOKEN, null)
 
             val createHotelInput = if (createImageOutput == null)

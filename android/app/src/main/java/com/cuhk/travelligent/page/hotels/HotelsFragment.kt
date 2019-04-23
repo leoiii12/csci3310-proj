@@ -77,6 +77,8 @@ class HotelsFragment : Fragment(), OnListFragmentInteractionListener {
         val view = inflater.inflate(R.layout.fragment_hotels, container, false)
         val activity = activity!!
 
+        activity.title = "Hotels"
+
         recyclerView = view.list
         val fab = view.findViewById(R.id.fab) as FloatingActionButton
 

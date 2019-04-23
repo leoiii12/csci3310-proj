@@ -84,6 +84,8 @@ class SightDetailsFragment : Fragment() {
             val sight = getSightOutput.sight!!
 
             activity.runOnUiThread {
+                activity.title = sight.title
+
                 initCoverImageSection(view, coverImageView, sight)
                 initMap(mapButton, sight)
                 initRatingSection(activity, ratingBarView, ratingBarHintsView, sight)

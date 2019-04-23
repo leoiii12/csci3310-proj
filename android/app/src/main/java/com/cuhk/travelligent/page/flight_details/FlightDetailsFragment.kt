@@ -78,6 +78,8 @@ class FlightDetailsFragment : Fragment() {
             val flight = getFlightOutput.flight!!
 
             activity.runOnUiThread {
+                activity.title = flight.title
+                
                 initCoverImageSection(view, coverImageView, flight)
                 initRatingSection(activity, ratingBarView, ratingBarHintsView, flight)
                 initCommentSection(viewCommentsButton, firstCommentBanner, flight)

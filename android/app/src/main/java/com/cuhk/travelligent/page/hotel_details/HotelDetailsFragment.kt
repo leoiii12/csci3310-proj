@@ -84,6 +84,8 @@ class HotelDetailsFragment : Fragment() {
             val hotel = getHotelOutput.hotel!!
 
             activity.runOnUiThread {
+                activity.title = hotel.title
+
                 initCoverImageSection(view, coverImageView, hotel)
                 initMap(mapButton, hotel)
                 initRatingSection(activity, ratingBarView, ratingBarHintsView, hotel)

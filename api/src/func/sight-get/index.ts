@@ -1,6 +1,6 @@
 import { IsDefined, IsInt } from 'class-validator';
 
-import { Image, Role, Sight, SightDto } from '@event/entity';
+import { Comment, Image, Rating, Role, Sight, SightDto } from '@event/entity';
 import { Authorized, DB, Func, UnauthorizedError, UserFriendlyError } from '@event/util';
 
 export class GetSightInput {
@@ -22,15 +22,31 @@ export async function getSight(input: GetSightInput, userId?: number, roles?: Ro
 
   const connection = await DB.getConnection();
   const sightRepository = connection.getRepository(Sight);
+  const ratingRepository = connection.getRepository(Rating);
+  const commentRepository = connection.getRepository(Comment);
   const imageRepository = connection.getRepository(Image);
 
   const sight = await sightRepository.findOne({
     where: {
       id: input.sightId,
     },
-    relations: ['comments', 'ratings'],
   });
   if (sight === undefined) throw new UserFriendlyError('The sight does not exist.');
+
+  const ratings = await ratingRepository.find({
+    where: {
+      sightId: input.sightId,
+    },
+    relations: ['createUser'],
+  });
+  const comments = await commentRepository.find({
+    where: {
+      sightId: input.sightId,
+    },
+    relations: ['createUser'],
+  });
+  sight.ratings = ratings;
+  sight.comments = comments;
 
   const images = await imageRepository.findByIds(sight.imageIds);
 

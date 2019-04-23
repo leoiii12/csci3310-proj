@@ -13,12 +13,14 @@ package io.swagger.client.models
 
 import io.swagger.client.models.CommentDto
 import io.swagger.client.models.ImageDto
+import io.swagger.client.models.LatLng
 import io.swagger.client.models.RatingDto
 
 /**
  * 
  * @param id 
  * @param title 
+ * @param latLng 
  * @param images 
  * @param comments 
  * @param ratings 
@@ -26,6 +28,7 @@ import io.swagger.client.models.RatingDto
 data class SightDto (
     val id: kotlin.Int? = null,
     val title: kotlin.String? = null,
+    val latLng: LatLng? = null,
     val images: kotlin.Array<ImageDto>? = null,
     val comments: kotlin.Array<CommentDto>? = null,
     val ratings: kotlin.Array<RatingDto>? = null

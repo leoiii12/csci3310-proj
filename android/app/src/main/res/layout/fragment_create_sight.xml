@@ -1,48 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".sight.CreateSightFragment">
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".page.create_sight.CreateSightFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/select_cover_image_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Select Image" />
+            android:orientation="vertical">
+
+        <Button
+                android:id="@+id/select_cover_image_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select Image"/>
 
         <ImageView
-            android:id="@+id/cover_image_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                android:id="@+id/cover_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
         <EditText
-            android:id="@+id/title_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Title" />
+                android:id="@+id/title_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:text="Title"/>
 
         <fragment
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:layout_margin="5dp"/>
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:layout_margin="5dp"/>
 
         <Button
-            android:id="@+id/create_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:text="Create" />
+                android:id="@+id/create_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:text="Create"/>
 
     </LinearLayout>
 

@@ -3,6 +3,7 @@ import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } f
 import { IsDouble } from '@event/util';
 
 import { Flight, Sight, Transport, User } from './';
+import { UserDto } from './user';
 
 @Entity('rating')
 export class Rating {
@@ -47,6 +48,7 @@ export class RatingDto {
   constructor(
     public id: number,
     @IsDouble public value: number,
+    public createUser: UserDto,
   ) {
   }
 
@@ -54,6 +56,7 @@ export class RatingDto {
     return new RatingDto(
       rating.id,
       rating.value,
+      rating.createUser,
     );
   }
 

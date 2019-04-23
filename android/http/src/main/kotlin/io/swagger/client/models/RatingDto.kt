@@ -11,16 +11,19 @@
 */
 package io.swagger.client.models
 
+import io.swagger.client.models.UserDto
 
 /**
  * 
  * @param id 
  * @param value @IsDouble
+ * @param createUser 
  */
 data class RatingDto (
     val id: kotlin.Int? = null,
     /* @IsDouble */
-    val value: kotlin.Double? = null
+    val value: kotlin.Double? = null,
+    val createUser: UserDto? = null
 ) {
 
 }

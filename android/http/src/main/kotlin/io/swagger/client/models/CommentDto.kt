@@ -11,15 +11,18 @@
 */
 package io.swagger.client.models
 
+import io.swagger.client.models.UserDto
 
 /**
  * 
  * @param id 
  * @param content 
+ * @param createUser 
  */
 data class CommentDto (
     val id: kotlin.Int? = null,
-    val content: kotlin.String? = null
+    val content: kotlin.String? = null,
+    val createUser: UserDto? = null
 ) {
 
 }

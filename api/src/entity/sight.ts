@@ -1,6 +1,7 @@
 import {
     Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn,
 } from 'typeorm';
+import { IsDouble } from 'util/output';
 
 import { Comment, CommentDto, Image, ImageDto, Rating, RatingDto, User } from './';
 
@@ -36,11 +37,20 @@ export class Sight {
 
 }
 
+export class LatLng {
+  constructor(
+    @IsDouble public latitude: number | undefined,
+    @IsDouble public longitude: number | undefined,
+  ) {
+  }
+}
+
 export class SightDto {
 
   constructor(
     public id: number,
     public title: string,
+    public latLng: LatLng,
     public images: ImageDto[],
     public comments: CommentDto[],
     public ratings: RatingDto[],
@@ -51,6 +61,7 @@ export class SightDto {
     return new SightDto(
       sight.id,
       sight.title,
+      new LatLng(sight.latLng.latitude, sight.latLng.longitude),
       images.map(i => ImageDto.from(i)),
       sight.comments,
       sight.ratings,

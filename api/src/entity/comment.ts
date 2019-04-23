@@ -1,6 +1,7 @@
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 import { Flight, Sight, Transport, User } from './';
+import { UserDto } from './user';
 
 @Entity('comment')
 export class Comment {
@@ -45,6 +46,8 @@ export class CommentDto {
   constructor(
     public id: number,
     public content: string,
+    public createUser: UserDto,
+    public createDate: Date,
   ) {
   }
 
@@ -52,6 +55,8 @@ export class CommentDto {
     return new CommentDto(
       comment.id,
       comment.content,
+      comment.createUser,
+      comment.createDate,
     );
   }
 

@@ -15,6 +15,7 @@ import androidx.appcompat.widget.SearchView
 import com.cuhk.travelligent.page.sights.SightsFragment
 import kotlinx.android.synthetic.main.nav_header_home.view.*
 import androidx.core.view.MenuItemCompat
+import com.cuhk.travelligent.page.hotels.HotelsFragment
 
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -88,6 +89,16 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     .popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
                 val sightsFragment = SightsFragment()
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.home_fragment, sightsFragment)
+                    .commit()
+            }
+            R.id.nav_hotel -> {
+                supportFragmentManager
+                    .popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
+                val sightsFragment = HotelsFragment()
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.home_fragment, sightsFragment)

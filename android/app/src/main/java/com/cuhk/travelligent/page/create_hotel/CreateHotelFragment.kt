@@ -1,4 +1,4 @@
-package com.cuhk.travelligent.page.create_sight
+package com.cuhk.travelligent.page.create_hotel
 
 import android.app.Activity
 import android.content.Context.MODE_PRIVATE
@@ -23,9 +23,9 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import io.swagger.client.apis.ImageApi
-import io.swagger.client.apis.SightApi
+import io.swagger.client.apis.HotelApi
 import io.swagger.client.models.CreateImageOutput
-import io.swagger.client.models.CreateSightInput
+import io.swagger.client.models.CreateHotelInput
 import okhttp3.*
 import org.apache.commons.io.IOUtils
 import java.io.IOException
@@ -36,7 +36,7 @@ import kotlin.concurrent.thread
  * Use the [CreateHotelFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class CreateSightFragment : Fragment(), OnMapReadyCallback {
+class CreateHotelFragment : Fragment(), OnMapReadyCallback {
 
     private val IMAGE_PICKER_SELECT = 0
 
@@ -62,7 +62,7 @@ class CreateSightFragment : Fragment(), OnMapReadyCallback {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_create_sight, container, false)
+        val view = inflater.inflate(R.layout.fragment_create_hotel, container, false)
         val activity = activity
 
         selectCoverImageButton = view.findViewById(R.id.select_cover_image_button) as Button
@@ -97,15 +97,15 @@ class CreateSightFragment : Fragment(), OnMapReadyCallback {
             val prefs = activity!!.getSharedPreferences(Configs.PREFS, MODE_PRIVATE)
             val accessToken = prefs.getString(Configs.PREFS_ACCESS_TOKEN, null)
 
-            val createSightInput = if (createImageOutput == null)
-                CreateSightInput(
+            val createHotelInput = if (createImageOutput == null)
+                CreateHotelInput(
                     titleView.text.toString(),
                     selectedLatLng.latitude,
                     selectedLatLng.longitude,
                     arrayOf()
                 )
             else
-                CreateSightInput(
+                CreateHotelInput(
                     titleView.text.toString(),
                     selectedLatLng.latitude,
                     selectedLatLng.longitude,
@@ -113,9 +113,9 @@ class CreateSightFragment : Fragment(), OnMapReadyCallback {
                 )
 
             thread {
-                val sightApi = SightApi()
+                val hotelApi = HotelApi()
 
-                val createSightOutput = sightApi.apiSightCreate(createSightInput, "Bearer " + accessToken!!)
+                val createHotelOutput = hotelApi.apiHotelCreate(createHotelInput, "Bearer " + accessToken!!)
 
                 activity.runOnUiThread {
                     fragmentManager!!.popBackStack()

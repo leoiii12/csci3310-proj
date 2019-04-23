@@ -9,6 +9,11 @@
                 android:icon="@drawable/ic_menu_camera"
                 android:title="Sights"/>
 
+        <item
+                android:id="@+id/nav_hotel"
+                android:icon="@drawable/baseline_hotel_24"
+                android:title="Hotels"/>
+
     </group>
 
     <item android:title="Settings">

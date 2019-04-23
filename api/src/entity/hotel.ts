@@ -36,7 +36,6 @@ export class Hotel {
 
 }
 
-
 export class HotelDto {
 
   constructor(

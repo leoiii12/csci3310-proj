@@ -2,6 +2,7 @@ package com.cuhk.travelligent.page.flight_details
 
 
 import android.content.Context.MODE_PRIVATE
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,18 +21,13 @@ import com.cuhk.travelligent.R
 import com.cuhk.travelligent.component.CommentFragment
 import com.cuhk.travelligent.page.comments.CommentsFragment
 import com.cuhk.travelligent.page.comments.CommentsFragmentSerializableArg
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
-import io.swagger.client.apis.RatingApi
 import io.swagger.client.apis.FlightApi
+import io.swagger.client.apis.RatingApi
 import io.swagger.client.models.CreateRatingInput
-import io.swagger.client.models.GetFlightInput
 import io.swagger.client.models.FlightDto
+import io.swagger.client.models.GetFlightInput
 import kotlinx.android.synthetic.main.fragment_flight_details.view.*
 import kotlin.concurrent.thread
 
@@ -101,8 +97,6 @@ class FlightDetailsFragment : Fragment() {
             Glide
                 .with(view.context)
                 .load(flight.images!![0].blobUrl)
-                .override(1024, 500)
-                .fitCenter()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(coverImageView)
         }

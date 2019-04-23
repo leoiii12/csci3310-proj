@@ -2,6 +2,7 @@ package com.cuhk.travelligent.page.hotel_details
 
 
 import android.content.Context.MODE_PRIVATE
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -127,8 +128,6 @@ class HotelDetailsFragment : Fragment() {
             Glide
                 .with(view.context)
                 .load(hotel.images!![0].blobUrl)
-                .override(1024, 500)
-                .fitCenter()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(coverImageView)
         }

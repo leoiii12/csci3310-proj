@@ -24,7 +24,7 @@
             android:ems="10"
             android:id="@+id/password"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
             android:id="@+id/log_in_button"
             android:text="Log In"
             android:layout_width="match_parent"

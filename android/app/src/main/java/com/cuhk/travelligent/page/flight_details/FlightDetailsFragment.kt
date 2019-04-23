@@ -79,7 +79,7 @@ class FlightDetailsFragment : Fragment() {
 
             activity.runOnUiThread {
                 activity.title = flight.title
-                
+
                 initCoverImageSection(view, coverImageView, flight)
                 initRatingSection(activity, ratingBarView, ratingBarHintsView, flight)
                 initCommentSection(viewCommentsButton, firstCommentBanner, flight)
@@ -187,7 +187,8 @@ class FlightDetailsFragment : Fragment() {
                 fragments.add(
                     CommentFragment.newInstance(
                         "${it.createUser!!.firstName} ${it.createUser!!.lastName}",
-                        it.content!!
+                        it.content!!,
+                        it.createDate!!
                     )
                 )
             }

@@ -218,7 +218,8 @@ class HotelDetailsFragment : Fragment() {
                 fragments.add(
                     CommentFragment.newInstance(
                         "${it.createUser!!.firstName} ${it.createUser!!.lastName}",
-                        it.content!!
+                        it.content!!,
+                        it.createDate!!
                     )
                 )
             }

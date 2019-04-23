@@ -11,6 +11,9 @@ import com.cuhk.travelligent.R
 import io.swagger.client.models.CommentDto
 
 import kotlinx.android.synthetic.main.fragment_comment.view.*
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 /**
  * [RecyclerView.Adapter] that can display a [CommentDto].
@@ -30,16 +33,21 @@ class MyCommentRecyclerViewAdapter(
         holder.createUserNameView.text = "${item.createUser!!.firstName} ${item.createUser!!.lastName}"
         holder.contentView.text = item.content
 
-        with(holder.mView) {
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneId.systemDefault())
+
+        holder.createDateView.text = formatter.format(Instant.parse(item.createDate!!))
+
+        with(holder.view) {
             tag = item
         }
     }
 
     override fun getItemCount(): Int = values.size
 
-    inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        val createUserNameView: TextView = mView.create_user_name
-        val contentView: TextView = mView.content
+    inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+        val createUserNameView: TextView = view.create_user_name
+        val contentView: TextView = view.content
+        val createDateView: TextView = view.create_date
 
         override fun toString(): String {
             return super.toString() + " '" + contentView.text + "'"

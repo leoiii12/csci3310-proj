@@ -14,14 +14,10 @@ package io.swagger.client.models
 
 /**
  * 
- * @param emailAddress @IsDefined() @IsEmail()
- * @param password @IsDefined()
+ * @param hotelId 
  */
-data class InitInput (
-    /* @IsDefined() @IsEmail() */
-    val emailAddress: kotlin.String? = null,
-    /* @IsDefined() */
-    val password: kotlin.String? = null
+data class CreateHotelOutput (
+    val hotelId: kotlin.Int? = null
 ) {
 
 }

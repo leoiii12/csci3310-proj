@@ -11,25 +11,25 @@
 */
 package io.swagger.client.apis
 
-import io.swagger.client.models.AuthenticateInput
-import io.swagger.client.models.AuthenticateOutput
-import io.swagger.client.models.CheckAccountInput
-import io.swagger.client.models.CheckAccountOutput
-import io.swagger.client.models.SignUpInput
+import io.swagger.client.models.CreateHotelInput
+import io.swagger.client.models.CreateHotelOutput
+import io.swagger.client.models.GetHotelInput
+import io.swagger.client.models.GetHotelOutput
+import io.swagger.client.models.ListHotelsOutput
 
 import io.swagger.client.infrastructure.*
 
-class AuthApi(basePath: kotlin.String = "https://event331-api.azurewebsites.net") : ApiClient(basePath) {
+class HotelApi(basePath: kotlin.String = "https://event331-api.azurewebsites.net") : ApiClient(basePath) {
 
     /**
     * 
     * 
     * @param input  
     * @param xAuthorization  (optional, default to )
-    * @return AuthenticateOutput
+    * @return CreateHotelOutput
     */
     @Suppress("UNCHECKED_CAST")
-    fun apiAuthAuthenticate(input: AuthenticateInput, xAuthorization: kotlin.String) : AuthenticateOutput {
+    fun apiHotelCreate(input: CreateHotelInput, xAuthorization: kotlin.String) : CreateHotelOutput {
         val localVariableBody: kotlin.Any? = input
         val localVariableQuery: MultiValueMap = mapOf()
         
@@ -41,17 +41,17 @@ class AuthApi(basePath: kotlin.String = "https://event331-api.azurewebsites.net"
         
         val localVariableConfig = RequestConfig(
             RequestMethod.POST,
-            "/api/Auth/Authenticate",
+            "/api/Hotel/Create",
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<AuthenticateOutput>(
+        val response = request<CreateHotelOutput>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as AuthenticateOutput
+            ResponseType.Success -> (response as Success<*>).data as CreateHotelOutput
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
@@ -65,10 +65,10 @@ class AuthApi(basePath: kotlin.String = "https://event331-api.azurewebsites.net"
     * 
     * @param input  
     * @param xAuthorization  (optional, default to )
-    * @return CheckAccountOutput
+    * @return GetHotelOutput
     */
     @Suppress("UNCHECKED_CAST")
-    fun apiAuthCheckAccount(input: CheckAccountInput, xAuthorization: kotlin.String) : CheckAccountOutput {
+    fun apiHotelGet(input: GetHotelInput, xAuthorization: kotlin.String) : GetHotelOutput {
         val localVariableBody: kotlin.Any? = input
         val localVariableQuery: MultiValueMap = mapOf()
         
@@ -80,17 +80,17 @@ class AuthApi(basePath: kotlin.String = "https://event331-api.azurewebsites.net"
         
         val localVariableConfig = RequestConfig(
             RequestMethod.POST,
-            "/api/Auth/CheckAccount",
+            "/api/Hotel/Get",
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<CheckAccountOutput>(
+        val response = request<GetHotelOutput>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as CheckAccountOutput
+            ResponseType.Success -> (response as Success<*>).data as GetHotelOutput
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
@@ -102,12 +102,12 @@ class AuthApi(basePath: kotlin.String = "https://event331-api.azurewebsites.net"
     /**
     * 
     * 
-    * @param input  
     * @param xAuthorization  (optional, default to )
-    * @return void
+    * @return ListHotelsOutput
     */
-    fun apiAuthSignUp(input: SignUpInput, xAuthorization: kotlin.String) : Unit {
-        val localVariableBody: kotlin.Any? = input
+    @Suppress("UNCHECKED_CAST")
+    fun apiHotelList(xAuthorization: kotlin.String) : ListHotelsOutput {
+        val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mapOf()
         
         val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
@@ -118,17 +118,17 @@ class AuthApi(basePath: kotlin.String = "https://event331-api.azurewebsites.net"
         
         val localVariableConfig = RequestConfig(
             RequestMethod.POST,
-            "/api/Auth/SignUp",
+            "/api/Hotel/List",
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<Unit>(
+        val response = request<ListHotelsOutput>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> Unit
+            ResponseType.Success -> (response as Success<*>).data as ListHotelsOutput
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")

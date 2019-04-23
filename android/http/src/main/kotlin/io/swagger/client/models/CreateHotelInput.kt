@@ -19,7 +19,7 @@ package io.swagger.client.models
  * @param lng @IsOptional() @IsNumber()
  * @param imageIds @IsOptional() @IsInt({ each: true })
  */
-data class CreateSightInput (
+data class CreateHotelInput (
     /* @IsDefined() @IsString() @Length(2) */
     val title: kotlin.String? = null,
     /* @IsOptional() @IsNumber() */

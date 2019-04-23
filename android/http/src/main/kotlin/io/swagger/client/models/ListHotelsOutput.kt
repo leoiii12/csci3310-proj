@@ -11,17 +11,14 @@
 */
 package io.swagger.client.models
 
+import io.swagger.client.models.HotelListDto
 
 /**
  * 
- * @param emailAddress @IsDefined() @IsEmail()
- * @param password @IsDefined()
+ * @param hotels 
  */
-data class InitInput (
-    /* @IsDefined() @IsEmail() */
-    val emailAddress: kotlin.String? = null,
-    /* @IsDefined() */
-    val password: kotlin.String? = null
+data class ListHotelsOutput (
+    val hotels: kotlin.Array<HotelListDto>? = null
 ) {
 
 }

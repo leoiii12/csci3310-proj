@@ -25,7 +25,7 @@ import io.swagger.client.models.RatingDto
  * @param comments 
  * @param ratings 
  */
-data class SightDto (
+data class HotelDto (
     val id: kotlin.Int? = null,
     val title: kotlin.String? = null,
     val latLng: LatLng? = null,

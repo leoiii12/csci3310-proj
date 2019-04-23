@@ -11,17 +11,18 @@
 */
 package io.swagger.client.models
 
+import io.swagger.client.models.ImageDto
 
 /**
  * 
- * @param emailAddress @IsDefined() @IsEmail()
- * @param password @IsDefined()
+ * @param id 
+ * @param title 
+ * @param image 
  */
-data class InitInput (
-    /* @IsDefined() @IsEmail() */
-    val emailAddress: kotlin.String? = null,
-    /* @IsDefined() */
-    val password: kotlin.String? = null
+data class HotelListDto (
+    val id: kotlin.Int? = null,
+    val title: kotlin.String? = null,
+    val image: ImageDto? = null
 ) {
 
 }

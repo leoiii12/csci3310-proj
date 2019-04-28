@@ -13,8 +13,10 @@ import com.cuhk.travelligent.HomeActivity
 
 import com.cuhk.travelligent.R
 import com.cuhk.travelligent.page.sign_up.SignUpFragment
+import com.google.android.material.snackbar.Snackbar
 import io.swagger.client.apis.AuthApi
 import io.swagger.client.apis.UserApi
+import io.swagger.client.infrastructure.ClientException
 import io.swagger.client.models.AuthenticateInput
 import io.swagger.client.models.MyUserDto
 import kotlinx.android.synthetic.main.fragment_log_in.view.*
@@ -56,8 +58,25 @@ class LogInFragment : Fragment() {
             val userApi = UserApi()
 
             thread {
-                val authenticateInput = AuthenticateInput(emailAddress, password)
-                val authenticateOutput = authApi.apiAuthAuthenticate(authenticateInput, "")
+                val authenticateOutput = try {
+                    val authenticateInput = AuthenticateInput(emailAddress, password)
+                    authApi.apiAuthAuthenticate(authenticateInput, "")
+                } catch (ex: ClientException) {
+                    ex.printStackTrace()
+
+                    activity.runOnUiThread {
+                        emailAddressView.isEnabled = true
+                        passwordView.isEnabled = true
+                        logInButton.isEnabled = true
+                        signUpButton.isEnabled = true
+
+                        Snackbar
+                            .make(view, "Please check your password.", Snackbar.LENGTH_SHORT)
+                            .show();
+                    }
+
+                    return@thread
+                }
 
                 val myUser: MyUserDto
 

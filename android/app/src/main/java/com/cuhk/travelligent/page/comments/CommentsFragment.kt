@@ -100,21 +100,21 @@ class CommentsFragment : Fragment() {
                 thread {
                     val commentOutput = commentApi.apiCommentCreate(
                         CreateCommentInput(content, flightId, sightId, hotelId),
-                        "Bearer " + accessToken!!
+                        "Bearer $accessToken"
                     )
 
                     val comments = if (flightId != null) {
-                        val getFlightOutput = flightApi.apiFlightGet(GetFlightInput(flightId), "Bearer " + accessToken)
+                        val getFlightOutput = flightApi.apiFlightGet(GetFlightInput(flightId), "Bearer $accessToken")
                         val flight = getFlightOutput.flight!!
 
                         flight.comments
                     } else if (sightId != null) {
-                        val getSightOutput = sightApi.apiSightGet(GetSightInput(sightId), "Bearer " + accessToken)
+                        val getSightOutput = sightApi.apiSightGet(GetSightInput(sightId), "Bearer $accessToken")
                         val sight = getSightOutput.sight!!
 
                         sight.comments
                     } else {
-                        val getSightOutput = hotelApi.apiHotelGet(GetHotelInput(hotelId), "Bearer " + accessToken)
+                        val getSightOutput = hotelApi.apiHotelGet(GetHotelInput(hotelId), "Bearer $accessToken")
                         val hotel = getSightOutput.hotel!!
 
                         hotel.comments

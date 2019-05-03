@@ -74,7 +74,7 @@ class FlightDetailsFragment : Fragment() {
         val firstCommentBanner = view.no_comments_yet
 
         thread {
-            val getFlightOutput = flightApi.apiFlightGet(GetFlightInput(flightId), "Bearer " + accessToken!!)
+            val getFlightOutput = flightApi.apiFlightGet(GetFlightInput(flightId), "Bearer $accessToken")
             val flight = getFlightOutput.flight!!
 
             activity.runOnUiThread {
@@ -141,10 +141,10 @@ class FlightDetailsFragment : Fragment() {
                     thread {
                         val createRatingOutput = ratingApi.apiRatingCreate(
                             CreateRatingInput(rating.toDouble(), flightId = flightId),
-                            "Bearer " + accessToken!!
+                            "Bearer $accessToken"
                         )
 
-                        val getFlightOutput = flightApi.apiFlightGet(GetFlightInput(flightId), "Bearer " + accessToken)
+                        val getFlightOutput = flightApi.apiFlightGet(GetFlightInput(flightId), "Bearer $accessToken")
                         val flight = getFlightOutput.flight!!
 
                         activity.runOnUiThread {

@@ -82,7 +82,7 @@ class CreateHotelFragment : Fragment(), OnMapReadyCallback {
             val imageApi = ImageApi()
 
             thread {
-                createImageOutput = imageApi.apiImageCreate("Bearer " + accessToken!!)
+                createImageOutput = imageApi.apiImageCreate("Bearer $accessToken")
 
                 activity.runOnUiThread {
                     val i = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
@@ -117,7 +117,7 @@ class CreateHotelFragment : Fragment(), OnMapReadyCallback {
             thread {
                 val hotelApi = HotelApi()
 
-                val createHotelOutput = hotelApi.apiHotelCreate(createHotelInput, "Bearer " + accessToken!!)
+                val createHotelOutput = hotelApi.apiHotelCreate(createHotelInput, "Bearer $accessToken")
 
                 activity.runOnUiThread {
                     fragmentManager!!.popBackStack()

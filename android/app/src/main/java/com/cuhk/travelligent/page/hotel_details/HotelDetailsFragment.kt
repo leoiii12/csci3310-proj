@@ -80,7 +80,7 @@ class HotelDetailsFragment : Fragment() {
         val firstCommentBanner = view.no_comments_yet
 
         thread {
-            val getHotelOutput = hotelApi.apiHotelGet(GetHotelInput(hotelId), "Bearer " + accessToken!!)
+            val getHotelOutput = hotelApi.apiHotelGet(GetHotelInput(hotelId), "Bearer $accessToken")
             val hotel = getHotelOutput.hotel!!
 
             activity.runOnUiThread {
@@ -172,10 +172,10 @@ class HotelDetailsFragment : Fragment() {
                     thread {
                         val createRatingOutput = ratingApi.apiRatingCreate(
                             CreateRatingInput(rating.toDouble(), hotelId = hotelId),
-                            "Bearer " + accessToken!!
+                            "Bearer $accessToken"
                         )
 
-                        val getHotelOutput = hotelApi.apiHotelGet(GetHotelInput(hotelId), "Bearer " + accessToken)
+                        val getHotelOutput = hotelApi.apiHotelGet(GetHotelInput(hotelId), "Bearer $accessToken")
                         val hotel = getHotelOutput.hotel!!
 
                         activity.runOnUiThread {

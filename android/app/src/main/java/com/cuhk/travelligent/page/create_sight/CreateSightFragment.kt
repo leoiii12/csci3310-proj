@@ -82,7 +82,7 @@ class CreateSightFragment : Fragment(), OnMapReadyCallback {
             val imageApi = ImageApi()
 
             thread {
-                createImageOutput = imageApi.apiImageCreate("Bearer " + accessToken!!)
+                createImageOutput = imageApi.apiImageCreate("Bearer $accessToken")
 
                 activity.runOnUiThread {
                     val i = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
@@ -117,7 +117,7 @@ class CreateSightFragment : Fragment(), OnMapReadyCallback {
             thread {
                 val sightApi = SightApi()
 
-                val createSightOutput = sightApi.apiSightCreate(createSightInput, "Bearer " + accessToken!!)
+                val createSightOutput = sightApi.apiSightCreate(createSightInput, "Bearer $accessToken")
 
                 activity.runOnUiThread {
                     fragmentManager!!.popBackStack()

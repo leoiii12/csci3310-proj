@@ -80,7 +80,7 @@ class SightDetailsFragment : Fragment() {
         val firstCommentBanner = view.no_comments_yet
 
         thread {
-            val getSightOutput = sightApi.apiSightGet(GetSightInput(sightId), "Bearer " + accessToken!!)
+            val getSightOutput = sightApi.apiSightGet(GetSightInput(sightId), "Bearer $accessToken")
             val sight = getSightOutput.sight!!
 
             activity.runOnUiThread {
@@ -172,10 +172,10 @@ class SightDetailsFragment : Fragment() {
                     thread {
                         val createRatingOutput = ratingApi.apiRatingCreate(
                             CreateRatingInput(rating.toDouble(), sightId = sightId),
-                            "Bearer " + accessToken!!
+                            "Bearer $accessToken"
                         )
 
-                        val getSightOutput = sightApi.apiSightGet(GetSightInput(sightId), "Bearer " + accessToken)
+                        val getSightOutput = sightApi.apiSightGet(GetSightInput(sightId), "Bearer $accessToken")
                         val sight = getSightOutput.sight!!
 
                         activity.runOnUiThread {

@@ -153,7 +153,7 @@ class CommentsFragment : Fragment() {
                 arguments = Bundle().apply {
                     if (sightId != null) putInt(ARG_SIGHT_ID, sightId)
                     if (flightId != null) putInt(ARG_FLIGHT_ID, flightId)
-                    if (hotelId != null) putInt(ARG_FLIGHT_ID, hotelId)
+                    if (hotelId != null) putInt(ARG_HOTEL_ID, hotelId)
                     putSerializable(ARG_SERIALIZABLE_ARG, serializableArg)
                 }
             }

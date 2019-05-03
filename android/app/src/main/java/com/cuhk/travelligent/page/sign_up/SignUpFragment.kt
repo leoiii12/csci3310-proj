@@ -90,10 +90,16 @@ class SignUpFragment : Fragment() {
                 val lastName = lastNameView.text.toString()
                 val gender = if (maleView.isChecked) 1000 else 1001
 
-                val checkAccountInput = CheckAccountInput(emailAddress)
-                val checkAccountOutput = authApi.apiAuthCheckAccount(checkAccountInput, "")
+                try {
+                    val checkAccountInput = CheckAccountInput(emailAddress)
+                    val checkAccountOutput =  authApi.apiAuthCheckAccount(checkAccountInput, "")
 
-                if (checkAccountOutput.accountStatus == 1) {
+                    if (checkAccountOutput.accountStatus == 1) {
+                        throw Exception()
+                    }
+                } catch (ex: Exception) {
+                    ex.printStackTrace()
+
                     activity.runOnUiThread {
                         AlertDialog.Builder(context)
                             .setTitle("Alert")

@@ -10,6 +10,12 @@
               android:orientation="vertical"
               tools:context=".page.sign_up.SignUpFragment">
 
+    <ImageView
+            android:src="@drawable/banner"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/banner"/>
+
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

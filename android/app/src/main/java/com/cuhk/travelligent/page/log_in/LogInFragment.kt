@@ -43,8 +43,6 @@ class LogInFragment : Fragment() {
         val logInButton = view.log_in_button
         val signUpButton = view.sign_up_button
 
-        emailAddressView.setText("choimankin@outlook.com")
-        passwordView.setText("12345678")
         logInButton.setOnClickListener {
             emailAddressView.isEnabled = false
             passwordView.isEnabled = false
@@ -78,11 +76,9 @@ class LogInFragment : Fragment() {
                     return@thread
                 }
 
-                val myUser: MyUserDto
-
-                try {
+                val myUser: MyUserDto = try {
                     val getMyUserOutput = userApi.apiUserGetMyUser("Bearer " + authenticateOutput.accessToken!!)
-                    myUser = getMyUserOutput.myUser!!
+                    getMyUserOutput.myUser!!
                 } catch (ex: Exception) {
                     ex.printStackTrace()
 

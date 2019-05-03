@@ -7,6 +7,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.RadioButton
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.cuhk.travelligent.Configs
@@ -17,7 +20,7 @@ import io.swagger.client.apis.UserApi
 import io.swagger.client.models.AuthenticateInput
 import io.swagger.client.models.CheckAccountInput
 import io.swagger.client.models.SignUpInput
-import kotlinx.android.synthetic.main.fragment_log_in.view.*
+import kotlinx.android.synthetic.main.fragment_sign_up.view.*
 import kotlin.concurrent.thread
 
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,6 +37,15 @@ class SignUpFragment : Fragment() {
 
     private var defaultEmailAddress: String? = null
     private var defaultPassword: String? = null
+
+    private lateinit var emailAddressView: EditText
+    private lateinit var passwordView: EditText
+    private lateinit var firstNameView: EditText
+    private lateinit var lastNameView: EditText
+    private lateinit var maleView: RadioButton
+    private lateinit var femaleView: RadioButton
+    private lateinit var signUpButton: Button
+    private lateinit var logInButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,18 +66,19 @@ class SignUpFragment : Fragment() {
         val activity = activity!!
         val fragmentManager = fragmentManager!!
 
-        val emailAddressView = view.email_address
-        val passwordView = view.password
-        val signUpButton = view.sign_up_button
-        val logInButton = view.log_in_button
+        emailAddressView = view.email_address
+        passwordView = view.password
+        firstNameView = view.first_name
+        lastNameView = view.last_name
+        maleView = view.male
+        femaleView = view.female
+        signUpButton = view.sign_up_button
+        logInButton = view.log_in_button
 
         emailAddressView.setText(defaultEmailAddress)
         passwordView.setText(defaultPassword)
         signUpButton.setOnClickListener {
-            emailAddressView.isEnabled = false
-            passwordView.isEnabled = false
-            signUpButton.isEnabled = false
-            logInButton.isEnabled = false
+            setEnabled(false)
 
             val authApi = AuthApi()
             val userApi = UserApi()
@@ -73,6 +86,9 @@ class SignUpFragment : Fragment() {
             thread {
                 val emailAddress = emailAddressView.text.toString()
                 val password = passwordView.text.toString()
+                val firstName = firstNameView.text.toString()
+                val lastName = lastNameView.text.toString()
+                val gender = if (maleView.isChecked) 1000 else 1001
 
                 val checkAccountInput = CheckAccountInput(emailAddress)
                 val checkAccountOutput = authApi.apiAuthCheckAccount(checkAccountInput, "")
@@ -83,10 +99,7 @@ class SignUpFragment : Fragment() {
                             .setTitle("Alert")
                             .setMessage("The emailAddress has been registered.")
                             .setPositiveButton("Dismiss") { dialog, whichButton ->
-                                emailAddressView.isEnabled = true
-                                passwordView.isEnabled = true
-                                signUpButton.isEnabled = true
-                                logInButton.isEnabled = true
+                                setEnabled(true)
                             }
                             .show()
                     }
@@ -95,36 +108,36 @@ class SignUpFragment : Fragment() {
                 }
 
                 try {
-                    val signUpInput = SignUpInput(emailAddress, password)
+                    val signUpInput = SignUpInput(emailAddress, password, firstName, lastName, gender)
                     val signUpOutput = authApi.apiAuthSignUp(signUpInput, "")
 
-                    val authenticateInput = AuthenticateInput(emailAddress, password)
-                    val authenticateOutput = authApi.apiAuthAuthenticate(authenticateInput, "")
+                    try {
+                        val authenticateInput = AuthenticateInput(emailAddress, password)
+                        val authenticateOutput = authApi.apiAuthAuthenticate(authenticateInput, "")
 
+                        val getMyUserOutput = userApi.apiUserGetMyUser("Bearer " + authenticateOutput.accessToken!!)
+                        val myUser = getMyUserOutput.myUser!!
 
-                    val getMyUserOutput = userApi.apiUserGetMyUser("Bearer " + authenticateOutput.accessToken!!)
-                    val myUser = getMyUserOutput.myUser!!
+                        val editor = context.getSharedPreferences(Configs.PREFS, Context.MODE_PRIVATE).edit()
+                        editor.putInt(Configs.PREFS_USER_ID, myUser.id!!)
+                        editor.putString(Configs.PREFS_EMAIL_ADDRESS, myUser.emailAddress)
+                        editor.putString(Configs.PREFS_FIRST_NAME, myUser.firstName)
+                        editor.putString(Configs.PREFS_LAST_NAME, myUser.lastName)
+                        editor.putString(Configs.PREFS_ACCESS_TOKEN, authenticateOutput.accessToken)
+                        editor.apply()
 
-                    val editor = context.getSharedPreferences(Configs.PREFS, Context.MODE_PRIVATE).edit()
-                    editor.putInt(Configs.PREFS_USER_ID, myUser.id!!)
-                    editor.putString(Configs.PREFS_EMAIL_ADDRESS, myUser.emailAddress)
-                    editor.putString(Configs.PREFS_FIRST_NAME, myUser.firstName)
-                    editor.putString(Configs.PREFS_LAST_NAME, myUser.lastName)
-                    editor.putString(Configs.PREFS_ACCESS_TOKEN, authenticateOutput.accessToken)
-                    editor.apply()
+                        val intent = Intent(activity, HomeActivity::class.java)
+                        startActivity(intent)
+                    } catch (ex: Exception) {
+                        ex.printStackTrace()
+                    }
                 } catch (ex: Exception) {
                     ex.printStackTrace()
                 }
 
                 activity.runOnUiThread {
-                    emailAddressView.isEnabled = true
-                    passwordView.isEnabled = true
-                    signUpButton.isEnabled = true
-                    logInButton.isEnabled = true
+                    setEnabled(true)
                 }
-
-                val intent = Intent(activity, HomeActivity::class.java)
-                startActivity(intent)
             }
         }
         logInButton.setOnClickListener {
@@ -134,6 +147,17 @@ class SignUpFragment : Fragment() {
         return view
     }
 
+    private fun setEnabled(enabled: Boolean) {
+        emailAddressView.isEnabled = enabled
+        passwordView.isEnabled = enabled
+        firstNameView.isEnabled = enabled
+        lastNameView.isEnabled = enabled
+        maleView.isEnabled = enabled
+        femaleView.isEnabled = enabled
+        passwordView.isEnabled = enabled
+        signUpButton.isEnabled = enabled
+        logInButton.isEnabled = enabled
+    }
 
     companion object {
         /**

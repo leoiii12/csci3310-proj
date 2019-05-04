@@ -139,6 +139,16 @@ class SignUpFragment : Fragment() {
                     }
                 } catch (ex: Exception) {
                     ex.printStackTrace()
+
+                    activity.runOnUiThread {
+                        AlertDialog.Builder(context)
+                            .setTitle("Alert")
+                            .setMessage("Password longer than 6 please.")
+                            .setPositiveButton("Dismiss") { dialog, whichButton ->
+                                setEnabled(true)
+                            }
+                            .show()
+                    }
                 }
 
                 activity.runOnUiThread {

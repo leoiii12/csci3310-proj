@@ -12,12 +12,6 @@
             android:paddingStart="8dp"
             android:paddingEnd="8dp">
 
-        <com.google.android.material.button.MaterialButton
-                android:id="@+id/select_cover_image_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Select Image"/>
-
         <ImageView
                 android:id="@+id/cover_image"
                 android:layout_width="match_parent"
@@ -37,6 +31,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="500dp"
                 android:layout_margin="5dp"/>
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/select_cover_image_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select Image"/>
 
         <com.google.android.material.button.MaterialButton
                 android:id="@+id/create_button"
